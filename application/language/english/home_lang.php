@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 //Navbar
 $lang['label_home']                               = "Home";
-$lang['label_jobs']                               = "Jobs";
-$lang['label_search_job']                         = "Search Job";
-$lang['label_jobs_by_cat']                        = "Jobs by Category";
-$lang['label_jobs_by_industry']                   = "Jobs by Industry";
-$lang['label_jobs_by_loc']                        = "Jobs by Location";
-$lang['label_browse_jobs']                        = "Browse all Jobs";
+$lang['label_jobs']                               = "Virtual Jobs";
+$lang['label_search_job']                         = "Search Virtual Job";
+$lang['label_jobs_by_cat']                        = "Virtual Jobs by Category";
+$lang['label_jobs_by_industry']                   = "Virtual Jobs by Industry";
+$lang['label_jobs_by_loc']                        = "Virtual Jobs by Location";
+$lang['label_browse_jobs']                        = "Browse all Virtual Jobs";
 $lang['label_companies']                          = "Daily Deals";
 $lang['label_blog']                               = "Pricing";
 $lang['label_login']                              = "Login";
@@ -23,6 +23,7 @@ $lang['label_my_profile']                         = "My Profile";
 $lang['label_my_apps']                            = "My Applications";
 $lang['label_matching_jobs']                      = "Matching Jobs";
 $lang['label_saved_jobs']                         = "Saved Jobs";
+$lang['label_my_orders']                         = "My Orders";
 $lang['label_change_pass']                        = "Change Password";
 $lang['label_logout']                             = "LogOut";
 $lang['label_dashboard']                          = "Dashboard";
@@ -108,6 +109,7 @@ $lang['already_applied']                      = "You have already applied for th
 $lang['industry']                             = "Industry";
 $lang['total_positions']                      = "Total Positions";
 $lang['gender']                               = "Gender";
+$lang['cost']                               = "Cost";
 $lang['salary']                               = "Salary";
 $lang['education']                            = "Education";
 $lang['location']                             = "Location";
@@ -153,7 +155,7 @@ $lang['signup_now']                       = "Sign up now ";
 
 //Forgot Passowrd
 $lang['forgot_pass_msg']                   = "Enter your email and we will send you instructions on how to reset your password";
-$lang['close']                             = "close";
+$lang['close']                             = "Close";
 $lang['recover_pass']                      = "Recover Password";
 $lang['you_remember_pass']                 = "You Remember Password?";
 
@@ -212,3 +214,14 @@ $lang['year']                             = "year";
 $lang['decade']                           = "decade";
 $lang['ago']                              = "ago";
 $lang['from_now']                         = "from now";
+
+
+//orders
+$lang['orders'] = "Orders";
+
+
+$lang['action'] = "Action";
+$lang['label_services'] = "Services";
+$lang['label_bussiness'] = "Business";
+$lang['label_products'] = "Products";
+$lang['label_daily_deals'] = "Daily Deals";

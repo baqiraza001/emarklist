@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/plugins/texteditor/lib/css/prettify.css"></link>
 <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/plugins/texteditor/src/bootstrap-wysihtml5.css"></link>
-
+<script src="<?= base_url(); ?>assets/js/html-duration-picker.min.js"></script>
 <!-- start banner Area -->
 <section class="banner-area relative" id="home">	
 	<div class="overlay overlay-bg"></div>
@@ -69,64 +69,32 @@
 										<h5>Service Sub-Type *</h5>
 										<select class="form-control category" name="category">
 										   <option><?=trans('select_category')?></option>
-										   <!-- <?php foreach($categories as $category): ?>
-										   		<option value="<?= $category['id']?>"><?= $category['name']?></option>
-										   <?php endforeach; ?> -->
 										</select>
 									</div>
 								</div>
 
 								<div class="col-md-6 col-sm-12">
 									<div class="submit-field">
-										<h5>Duration *</h5>
-										<select class="form-control" name="start_time">
-											<?php
-											for ($i=1; $i <=24 ; $i++) { 
-											
-											?>
-										   <option><?php echo $i.":00"; ?></option>
-										   	<?php 
-											}
-											?>
-
-										</select>
+										<h5>Duration</h5>
+										<input type="text" style="text-align: left;" name="duration" class="form-control html-duration-picker" data-hide-seconds >
 									</div>
 								</div>
 
 								<div class="col-md-6 col-sm-12">
 									<div class="submit-field">
-										<h5>Shift End *</h5>
-										<select class="form-control" name="end_time">
-											<?php
-											for ($i=1; $i <=24 ; $i++) { 
-											?>
-										   <option><?php echo $i.":00"; ?></option>				
-										   <?php 
-											}
-											?>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-md-6 col-sm-12">
-									<div class="submit-field">
-										<h5><?=trans('salary')?> <!-- (<?= $this->general_settings['currency']; ?>) --> *</h5>
+										<div class="submit-field">
+										<h5><?=trans('cost')?> <!-- (<?= $this->general_settings['currency']; ?>) --> *</h5>
 										<div class="row">
-											<div class="col-md-4">
+											<div class="col-md-6">
 												<div class="input-group">
-													<input type="number" name="min_salary" class="form-control" placeholder="<?=trans('minimum')?>">
-												</div>
-											</div>
-											<div class="col-md-4">
-												<div class="input-group">
-													<input type="number" name="max_salary" class="form-control" placeholder="<?=trans('maximum')?>">
+													<input type="number" name="cost" class="form-control" placeholder="<?=trans('cost')?>">
 												</div>
 											</div>
 
-											<div class="col-md-4">
+											<div class="col-md-6">
 												<div class="submit-field">
 													<select name="currency_type" class="country form-control">
-														<option value="">Select Salary</option>
+														<option value="">Select Currency</option>
 														<option value="1">USD</option>
 														<option value="2">Naira</option>
 													</select>
@@ -135,103 +103,15 @@
 
 										</div>
 									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<!-- <div class="submit-field"> -->
-
-										<div class="submit-field">
-										<h5>Add Category (If not found on uper list)</h5>										<input type="text" name="add_category" class="form-control">
-									<!-- </div> -->
-									</div>
-								</div>a
-								<!-- <div class="col-md-6 col-sm-12">
-									<div class="submit-field">
-										<h5><?=trans('job_industry')?> *</h5>
-										<select class="form-control" name="industry">
-										   <option><?=trans('select_industry')?></option>
-										   <?php foreach($industries as $industry):?>
-										   		<option value="<?= $industry['id']?>"><?= $industry['name']?></option>
-										   <?php endforeach; ?>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<div class="submit-field"> 
-										<h5><?=trans('position_available')?> *</h5>
-										<select name="total_positions" class="form-control">	
-									  	    <?php for($i=1; $i<30; $i++): ?>
-									   			<option value="<?= $i; ?>"><?= $i; ?></option>
-										    <?php endfor; ?>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-md-12 col-sm-12">
-									<div class="submit-field">
-										<h5><?=trans('working_experience')?>  *</h5>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="input-group">
-													<?php 
-														$options = get_experience_list('Minimum');
-														echo form_dropdown('min_experience',$options,'','class="form-control"');
-													?>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="input-group">
-													<?php 
-														$options = get_experience_list('Maximum');
-														echo form_dropdown('max_experience',$options,'','class="form-control"');
-													?>
-												</div>
-											</div>
-										</div>
 									</div>
 								</div>
 
 								<div class="col-md-6 col-sm-12">
 									<div class="submit-field">
-										<h5><?=trans('salary')?> (<?= $this->general_settings['currency']; ?>) *</h5>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="input-group">
-													<input type="number" name="min_salary" class="form-control" placeholder="<?=trans('minimum')?>">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="input-group">
-													<input type="number" name="max_salary" class="form-control" placeholder="<?=trans('maximum')?>">
-												</div>
-											</div>
-										</div>
+										<h5>Add Category (If not found on uper list)</h5>										
+										<input type="text" name="add_category" class="form-control">
 									</div>
 								</div>
-
-								<div class="col-md-6 col-sm-12">
-									<div class="submit-field">
-										<h5><?=trans('salary_period')?> *</h5>
-										<select name="salary_period" class="form-control">
-											<option value="Hourly"><?=trans('hourly')?></option>
-											<option value="Weekly"><?=trans('weekly')?></option>
-											<option value="Monthly"><?=trans('monthly')?></option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12">
-									<div class="submit-field">
-										<h5> <?=trans('skills')?> *</h5>
-										<input type="text" name="skills" class="form-control" placeholder="<?=trans('skills_placeholder')?>">
-									</div>
-								</div> -->
-								<div class="col-md-12 col-sm-12">
-									<div class="submit-field">
-										<h5><?=trans('service_description')?> *</h5>
-										<textarea name="description" class="textarea form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-									</div>
-								</div>
-								
 								<div class="col-md-6 col-sm-12">
 									<div class="submit-field"> 
 										<h5>Service For *</h5>
@@ -242,60 +122,13 @@
 										</select>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-12 col-sm-12">
 									<div class="submit-field">
-										<h5> <?=trans('expiry_date')?> *</h5>
-										<input type="date" name="expiry_date" class="form-control" placeholder="">
+										<h5><?=trans('service_description')?> *</h5>
+										<textarea name="description" class="textarea form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
 									</div>
 								</div>
-							<!-- 	<div class="col-md-6 col-sm-12">
-									<div class="submit-field">
-										<h5><?=trans('emp_type')?> *</h5>
-										<?php 
-											$types = get_employment_type_list();
-											$options = array('' => 'Select Employement Type') + array_column($types, 'type','id');
-											echo form_dropdown('employment_type',$options,'','class="form-control"');
-										?>
-									</div>
-								</div> -->
-								<!-- <div class="col-md-6 col-sm-12">
-									<div class="submit-field">
-										<h5><?=trans('education')?> *</h5>
-										<select class="form-control" name="education">
-											<option value=""><?=trans('select_education')?></option>
-											<?php foreach($educations as $row): ?>
-												<option value="<?= $row['id']; ?>"> <?= $row['type']; ?></option>
-											<?php endforeach; ?>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<div class="submit-field">
-										<h5><?=trans('country')?> *</h5>
-										<select class="country form-control" name="country">
-										   <option><?=trans('select_country')?></option>
-										    <?php foreach($countries as $country):?>
-										   		<option value="<?= $country['id']?>"><?= $country['name']?></option>
-										    <?php endforeach; ?>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<div class="submit-field">
-										<h5><?=trans('state')?> *</h5>
-										<select class="form-control state" name="state" required>
-								            <option><?=trans('select_state')?></option>
-								        </select>
-									</div>
-								</div>
-								<div class="col-md-6 col-sm-12">
-									<div class="submit-field">
-										<h5><?=trans('city')?> *</h5>
-										<select class="form-control city" name="city" required>
-								            <option><?=trans('select_city')?></option>
-								         </select>
-									</div>
-								</div> -->
+								
 								<div class="col-12">
 									<div class="submit-field">
 										<h5>Address *</h5>
@@ -309,12 +142,6 @@
 				                    <!-- <input type="hidden" name="old_profile_picture" value="<?= $emp_info['profile_picture']  ?>"> -->
 				                  </div>
 				                </div>
-								<!-- <div class="col-12">
-									<div class="submit-field">
-										<h5> <?=trans('expiry_date')?> *</h5>
-										<input type="date" name="expiry_date" class="form-control" placeholder="">
-									</div>
-								</div> -->
 							</div>
 						</div>
 					</div>

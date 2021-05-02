@@ -52,7 +52,7 @@ class Job extends Main_Controller {
 		$emp_id = $this->session->userdata('employer_id');
 		$data['categories'] = $this->common_model->get_categories_list(); 
 		$data['industries'] = $this->common_model->get_industries_list();
-		$data['countries'] = $this->common_model->get_countries_list(160); 
+		$data['countries'] = $this->common_model->get_countries_list(); 
 		$data['cities'] = $this->common_model->get_cities_list(); 
 		$data['salaries'] = $this->common_model->get_salary_list();  
 		$data['educations'] = $this->common_model->get_education_list();
@@ -151,54 +151,7 @@ class Job extends Main_Controller {
 		}
 	}
 //---------------------------------------------------------------------------------------
-	public function add_staff()
-	{
-
-		$emp_id = $this->session->userdata('employer_id');
 	
-		if ($this->input->post('add_staff')) {
-			$this->form_validation->set_rules('name','Name','required');
-			$this->form_validation->set_rules('Designation','Designation','required');
-			if ($this->form_validation->run() == FALSE) {
-				$data = array(
-					'errors' => validation_errors(),
-				);
-
-				$this->session->set_flashdata('post_job_error',$data['errors']);
-				redirect(base_url('bussiness/job/post'),'refresh');
-
-			}else{
-				$data = array(
-					'bussiness_id' => get_company_id_by_employer($emp_id), // helper function
-					'name' => $this->input->post('name'),
-					'designation' => $this->input->post('Designation'),
-					'service_type'=>$this->input->post('service_type'),
-					'service_sub_type' => $this->input->post('category')
-				);
-				
-				$job_id = $this->job_model->add_staff($data);
-
-				
-				if ($job_id){
-					$this->session->set_flashdata('post_job_success',trans('job_posted_success'));
-					redirect(base_url('bussiness/job/listing'));
-				}
-				else{
-					echo "failed";
-				}
-			}
-		}
-		else{
-			$data['emp_sidebar'] = 'bussiness/emp_sidebar'; // load sidebar for employer
-
-			$data['title'] = trans('post_new_job');
-			$data['meta_description'] = 'your meta description here';
-			$data['keywords'] = 'meta tags here';
-
-			$data['layout'] = 'bussiness/jobs/add_staff';
-			$this->load->view('layout', $data);
-		}
-	}
 	public function listing()
 	{
 		$emp_id = $this->session->userdata('employer_id');

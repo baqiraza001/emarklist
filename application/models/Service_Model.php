@@ -177,7 +177,7 @@ class Service_Model extends CI_Model{
 		return $query->result_array();
 	}
 
-
+	
 	
 
 } // endClass

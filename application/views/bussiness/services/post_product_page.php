@@ -63,7 +63,7 @@
 
 								<div class="col-md-6 col-sm-12">
 									<div class="submit-field">
-										<h5>Product Type *</h5>
+										<h5>Product Category *</h5>
 										<?php 
 											$types = get_service_type_list();
 											$options = array('' => trans('select_service_type')) + array_column($types, 'name','id');
@@ -74,20 +74,13 @@
 							
 								<div class="col-md-6 col-sm-12">
 									<div class="submit-field">
-										<h5>Product Sub-Type *</h5>
+										<h5>Product Sub-Category *</h5>
 										<select class="form-control category" name="product_category">
 										   <option><?=trans('select_category')?></option>
 										   <!-- <?php foreach($categories as $category): ?>
 										   		<option value="<?= $category['id']?>"><?= $category['name']?></option>
 										   <?php endforeach; ?> -->
 										</select>
-									</div>
-								</div>
-
-								<div class="col-md-12 col-sm-12">
-									<div class="submit-field">
-										<h5>Add Sub-Type (If not found on uper list)</h5>		
-										<input type="text" name="add_category" class="form-control">
 									</div>
 								</div>
 
@@ -103,9 +96,21 @@
 										<input type="number" name="quantity" class="form-control" placeholder="1,2,3...etc">
 									</div>
 								</div>
+								<!-- <div class="col-md-6 col-sm-12">
+									<div class="submit-field">
+										<h5>Shipping Fee</h5>		
+										<input type="text" name="shipping_fee" class="form-control" placeholder="Enter shipping fee" required>
+									</div>
+								</div> -->
+								<div class="col-md-6 col-sm-12">
+									<div class="submit-field">
+										<h5>Add Sub-Type (If not found on uper list)</h5>		
+										<input type="text" name="add_category" class="form-control">
+									</div>
+								</div>
 								<div class="col-md-12 col-sm-12">
 									<div class="submit-field">
-										<h5><?=trans('service_description')?> *</h5>
+										<h5><?=trans('product_description')?> *</h5>
 										<textarea name="product_description" class="textarea form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
 									</div>
 								</div>

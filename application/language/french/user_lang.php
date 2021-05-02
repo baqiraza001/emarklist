@@ -107,7 +107,8 @@ $lang['featured_jobs_credits']                          = "Crédits d'emplois en
 $lang['active_package']                                 = "Forfait Actif";
 $lang['company_profile']                                = "Profil de la société";
 $lang['post_new_job']                                   = "Publier un nouvel emploi";
-$lang['my_packages']                                    = "Mes forfaits";
+$lang['my_packages']                                    = "Mes Abonnements";
+$lang['new_package']                                    = "Nouvel abonnement";
 $lang['shortlisted_resumes']                            = "CV présélectionnés";
 $lang['free_package_error']                            = "Vous avez déjà utilisé votre forfait gratuit. S'il vous plaît acheter des paquets payés";
 
@@ -181,7 +182,7 @@ $lang['bought_date']                                    = "Date d'achat";
 $lang['expiry_date']                                    = "Date d'expiration";
 $lang['price']                                          = "Prix";
 $lang['expired']                                        = "Expiré";
-$lang['active']                                         = "Actif";
+$lang['active']                                         = "Activer le package";
 $lang['deactivated']                                    = "Désactivé";
 
 //Shortlisted Resumes
@@ -201,7 +202,7 @@ $lang['applicants_listings']                        = "Liste des candidats";
 $lang['no_applicant']                               = "il n'y a pas de candidat contre ce travail.";
 $lang['more']                                       = "Plus";
 $lang['preview_cv']                                 = "Aperçu du CV";
-$lang['email_candidate']                            = "Courriel candidat";
+$lang['email_candidate']                            = "Schedule Interview";
 $lang['jobs_applicants']                            = "Offres d'emploi";
 $lang['shortlisted_applicants']                     = "Candidats présélectionnés";
 $land['interview_subject']                          = "Message d'entrevue | Portail OnJob";
@@ -288,3 +289,16 @@ $lang['import_links']                               = "Liens Importants";
 $lang['']                               = "";
 
 
+//products
+$lang['products'] = 'Products';
+$lang['label_my_products'] = "My Products";
+$lang['edit_product'] = "Edit Product";
+$lang['product_edited_success'] = "Product edited successfully";
+$lang['product_deleted_success'] = "Product deleted successfully";
+
+
+$lang['edit_service'] = 'Update Service';
+$lang['service_update_success'] = 'Updated successfully';
+$lang['job_country_location'] = 'Job Country Location';
+$lang['date_txt'] = 'Date';
+$lang['zoom_link'] = 'Zoom Link';

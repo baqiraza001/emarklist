@@ -33,6 +33,11 @@ class Job_Model extends CI_Model{
 				$this->db->group_end();
 			}
 		}
+
+		if(!empty($search['posting_type']))
+			$this->db->where('posting_type', $search['posting_type'] );
+
+		$this->db->where('curdate() <  expiry_date');
 		$this->db->where('is_status', 'active');
 		$this->db->order_by('created_date','desc');
 		$this->db->group_by('id');
@@ -78,7 +83,7 @@ class Job_Model extends CI_Model{
 		unset($search['p']); //unset pagination parameter form search
 		
 		if(!empty($search['company_id']))
-		$this->db->where('company_id',$search['company_id'] );
+			$this->db->where('company_id',$search['company_id'] );
 
 		// if(!empty($search['country']))
 		// 	$this->db->where('country',$search['country'] );
@@ -121,7 +126,7 @@ class Job_Model extends CI_Model{
 		return $query->result_array();
 	}
 
-		public function get_all_jobs_by_categories($limit, $offset, $search)
+	public function get_all_jobs_by_categories($limit, $offset, $search)
 	{
 		$this->db->select('id, title, company_id, job_slug, job_type, description, country, city, expiry_date, created_date, industry');
 		$this->db->from('xx_job_post');
@@ -184,6 +189,9 @@ class Job_Model extends CI_Model{
 		if(!empty($search['category']))
 			$this->db->where('category',$search['category'] );
 
+		if(!empty($search['industry']))
+			$this->db->where('industry',$search['industry'] );
+
 		if(!empty($search['experience']))
 			$this->db->where('experience',$search['experience'] );
 
@@ -193,8 +201,8 @@ class Job_Model extends CI_Model{
 		if(!empty($search['employment_type']))
 			$this->db->where('employment_type',$search['employment_type'] );
 
-		if(!empty($search['posting_type']) || empty($search['posting_type']))
-			$this->db->where('posting_type','1' );
+		if(!empty($search['posting_type']))
+			$this->db->where('posting_type', $search['posting_type'] );
 
 		if(!empty($search['title'])){
 			$search_text = explode('-', $search['title']);
@@ -205,7 +213,6 @@ class Job_Model extends CI_Model{
 				$this->db->group_end();
 			}
 		}
-		
 
 		$this->db->where('is_status', 'active');
 		$this->db->where('curdate() <  expiry_date');
@@ -215,7 +222,7 @@ class Job_Model extends CI_Model{
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-		public function get_all_jobs_bussiness($limit, $offset)
+	public function get_all_jobs_bussiness($limit, $offset)
 	{
 		$this->db->select('id, title, company_id, job_slug, job_type, description, country, city, expiry_date, created_date, industry');
 		$this->db->from('xx_job_post');
@@ -344,6 +351,7 @@ class Job_Model extends CI_Model{
 	{
 		$this->db->select('city as city_id, COUNT(city) as total_jobs');
 		$this->db->from('xx_job_post');
+		$this->db->where('is_status', 'active');
 		$this->db->where('curdate() <  expiry_date');
 		$this->db->group_by('city');
 		$query = $this->db->get();
@@ -376,8 +384,13 @@ class Job_Model extends CI_Model{
 		return $query->result_array();
 	}
 
+	function deal_booked_slots($where_arr)
+	{
+		$this->db->select('slot')->from('xx_book_deal');
+		$this->db->where($where_arr);
+		return  $this->db->get()->result_array();
+	}
 
-	
 
 } // endClass
 

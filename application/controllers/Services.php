@@ -368,23 +368,24 @@ class Services extends Main_Controller {
 		redirect('Company/detail1/'.$company_slug['company_slug'], ''); 
 
 	}
-	public function add_appointment(){
+	public function add_appointment()
+	{
+		$this->load->model('bussiness/staff_model');
+
 		$service_id=$this->input->post('service_id');
 		$staff=$this->input->post('staff');
 		$appointment=$this->input->post('appointment_time');
-		$timinings=explode ("-", $appointment);  
 		$data=array(
-			'service_id'=>$service_id,
+			'user_id'=>$this->session->userdata('user_id'),
 			'staff_id' =>$staff,
 			'slot'	=> $appointment,
-			'start_time' => (int)$timinings[0],
-			'end_time' => (int)$timinings[1]
 		);
 		//$check=$this->db->query("SELECT * FROM xx_book_service WHERE staff_id='".$staff."' AND slot='".$slot."' ")->result_array();
-		$array = array('staff_id' => $staff, 'slot' => $appointment);
-		$check=$this->db->select('id')->from('xx_book_service')->where($array)->get()->row_array();
+		$where_arr = array('staff_id' => $staff, 'slot' => $appointment);
+		$slot_record = $this->staff_model->staff_booked_slots($where_arr);
+		$this->load->model('company_model');
 
-		if ($check['id']!="") {
+		if (!empty($slot_record)) {
 			$this->session->set_flashdata('already_busy', "Sorry this staff member is already reserved at this slot.");
 			$slug=$this->db->select('job_slug')->from('xx_job_post')->where('id',$service_id)->get()->row_array();
 			redirect('jobs/'.$service_id.'/'.$slug['job_slug'] ,'');
@@ -392,13 +393,13 @@ class Services extends Main_Controller {
 		}
 		else{
 		$this->common_model->safe_insert('xx_book_service',$data,false);
-		$company_id=$this->common_model->company_id_by_service($service_id);
-		$company_slug=$this->common_model->company_slug_by_service($company_id['company_id']);
+		$company = $this->Service_Model->get_job_by_id($service_id)[0];
+		$company_slug = $this->company_model->get_company_detail($company['company_id'][0]);
 		$this->session->set_flashdata('add_service', "Your service is reserved.");
 		redirect('Company/detail1/'.$company_slug['company_slug'], ''); 	
 		}
 
-
+// 
 	}
 
 }// endClass

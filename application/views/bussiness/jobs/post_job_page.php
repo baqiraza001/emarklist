@@ -206,7 +206,7 @@
 								</div>
 								<div class="col-md-6 col-sm-12">
 									<div class="submit-field">
-										<h5><?=trans('country')?> *</h5>
+										<h5><?=trans('job_country_location')?> *</h5>
 										<select class="country form-control" name="country">
 										   <option><?=trans('select_country')?></option>
 										    <?php foreach($countries as $country):?>

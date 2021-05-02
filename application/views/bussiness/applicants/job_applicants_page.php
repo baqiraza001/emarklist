@@ -60,8 +60,10 @@
 								}
 								?>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								    <a class="dropdown-item" href="<?= base_url($resume); ?>"><?=trans('preview_cv')?></a>
-								    <a class="dropdown-item" href="<?= base_url($resume); ?>"><?=trans('download_cv')?></a>
+								    <?php if($applicant['resume_path'] != "") { ?>
+								    <a class="dropdown-item" download="true" target="_blank" href="<?= base_url($resume); ?>"><?=trans('preview_cv')?></a>
+								    <a class="dropdown-item" download="true" target="_blank" href="<?= base_url($resume); ?>"><?=trans('download_cv')?></a>
+								    <?php } ?>
 								    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#emailModal" data-whatever="<?= $applicant['email']; ?>"><?=trans('email_candidate')?></a>
 								    <div class="dropdown-divider"></div>
 								    <a class="dropdown-item" href="<?= base_url('bussiness/applicants/make_shortlist/'.$applicant['id'].'/'.$applicant['job_id']); ?>"><?=trans('shortlist')?></a>
@@ -99,6 +101,14 @@
           <div class="form-group">
             <label for="message-text" class="col-form-label"><?=trans('message')?>:</label>
             <textarea name="message" class="form-control" id="message"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="date-text" class="col-form-label"><?=trans('date_txt')?>:</label>
+							<input type="datetime-local" name="schedule_date" class="form-control" placeholder="">
+					</div>
+					<div class="form-group">
+            <label for="zoom-link" class="col-form-label"><?=trans('zoom_link')?>:</label>
+            <input type="text" name="zoom_link" class="form-control" id="zoom_link">
           </div>
           <div class="form-group">
           	<button type="button" class="btn btn-secondary" data-dismiss="modal"><?=trans('close')?></button>

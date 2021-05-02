@@ -1,4 +1,4 @@
-start banner Area -->
+<!-- start banner Area -->
 <section class="banner-area relative" id="home">  
   <div class="overlay overlay-bg"></div>
   <div class="container">
@@ -57,6 +57,7 @@ start banner Area -->
                   <th><?=trans('applications')?></th>
                   <th><?=trans('date')?></th>
                   <th><?=trans('status')?></th> 
+                  <th><?=trans('action')?></th> 
                 </tr>
               </thead>
               <tbody>
@@ -74,13 +75,6 @@ start banner Area -->
                   else{?>
                     <span style="font-weight: 700;padding-right: 10px;">Service</span>
                   <?php }?>
-                    <!-- <div class="job-listing-footer">
-                      <ul>
-                        <li><i class="fa fa-map-marker"></i> <?= get_city_name($job['city']); ?>, <?= get_country_name($job['country']); ?></li>
-                        <li><i class="fa fa-database"></i> <?= get_industry_name($job['industry']); ?></li>
-                      </ul>
-                    </div> -->
-
                   </td>
                   
                   <td style="padding: 10px;border-right: 1px solid #dbdbdb;">
@@ -96,19 +90,24 @@ start banner Area -->
                     <a href="<?= base_url('bussiness/applicants/view/'.$job['id']); ?>"><?=trans('applied')?> (<?= $job['cand_applied']?>)</a><br/>
                     <a href="<?= base_url('bussiness/applicants/shortlisted/'.$job['id']); ?>"><?=trans('shortlisted')?> (<?= $job['total_shortlisted']?>)</a><br/>
                   </td>
-                  <td style="padding: 10px;border-right: 1px solid #dbdbdb;"><?= $job['created_date']; ?></td>
-                  <td style="padding-left: 10px;">
+                  <td style="padding: 10px;border-right: 1px solid #dbdbdb;"><?= date("d F, Y h:i a", strtotime($job['created_date'])); ?></td>
+                  <td style="padding: 10px;border-right: 1px solid #dbdbdb;">
                     <?php
-                    $curdate = date('Y-m-d');
-                    if ($curdate >= $job['expiry_date']) {
-                      ?>
-                      <span class="badge badge-light"><?= trans('expired') ?></span><br/>
-                    <?php
+                    $edit_text = 'service';
+                    if ($job['posting_type']=='1'){
+                      $edit_text = 'job';
+                      $curdate = date('Y-m-d');
+                      if ($curdate >= $job['expiry_date']) {
+                        ?>
+                        <span class="badge badge-info"><?= trans('expired') ?></span><br/>
+                      <?php
+                      }
                     }
                     ?>
+                  </td>
+                  <td style="padding-left: 10px;">
                     <a href="<?= base_url('bussiness/job/delete/'.$job['id']); ?>" class="onjob-savedjobs-links btn-delete"><i title="<?=trans('delete')?>" class="lnr lnr-trash"></i></a>
-                    <a href="<?= base_url('bussiness/job/edit/'.$job['id']); ?>" class="onjob-savedjobs-links"><i title="<?=trans('edit')?>" class="lnr lnr-pencil"></i></a>
-                    <a href="<?= base_url('bussiness/job/edit/'.$job['id']); ?>" class="onjob-savedjobs-links"><i title="<?=trans('view')?>" class="lnr lnr-eye"></i></a>
+                    <a href="<?= base_url('bussiness/'.$edit_text.'/edit/'.$job['id']); ?>" class="onjob-savedjobs-links"><i title="<?=trans('edit')?>" class="lnr lnr-pencil"></i></a>
                   </td>
                 </tr>
                 <?php endforeach; ?>

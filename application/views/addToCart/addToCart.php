@@ -73,10 +73,9 @@
                     <?php 
                     $c_idz=1;   
                     // echo"<pre>";
-                    // print_r($res); 
                     // echo"<pre>";
                         foreach($res as $key1 => $row){ ?> 
-                        <div>Rs. <?php $sip +=$row['product_shiping']; echo  $shiping = $row['product_shiping']; ?> 
+                        <div>Rs. <?php $sip +=$row['total_price']; echo  $shiping = $row['total_price']; ?> 
 
 <input type="hidden" value="<?php echo $row['company_id']; ?>" name="company_id[]" id="company_id" > 
 <input type="hidden" value="<?php echo $shiping; ?>" name="shiping_fee[]" id="<?php echo 'shp'.$p_idz.$c_idz; ?>" class="test"> 

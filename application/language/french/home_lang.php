@@ -18,6 +18,7 @@ $lang['label_my_profile']                         = "Mon profil";
 $lang['label_my_apps']                            = "mes applications";
 $lang['label_matching_jobs']                      = "Emplois correspondants";
 $lang['label_saved_jobs']                         = "Emplois sauvegardés";
+$lang['label_my_orders']                         = "My Orders";
 $lang['label_change_pass']                        = "Changer le mot de passe";
 $lang['label_logout']                             = "Se déconnecter";
 $lang['label_dashboard']                          = "Tableau de bord";
@@ -203,3 +204,14 @@ $lang['year']                             = "année";
 $lang['decade']                           = "décennie";
 $lang['ago']                              = "depuis";
 $lang['from_now']                         = "à partir de maintenant";
+
+
+//orders
+$lang['orders'] = "Orders";
+$lang['label_my_deals'] = "My Deals";
+
+$lang['action'] = "Action";
+$lang['label_services'] = "Services";
+$lang['label_bussiness'] = "Business";
+$lang['label_products'] = "Products";
+$lang['label_daily_deals'] = "Daily Deals";

@@ -32,7 +32,7 @@
 			<a class="justify-content-between d-flex" href="<?= base_url('employers/packages/bought'); ?>"><p><i class="fa fa-th-large pr-2"></i> <?=trans('my_packages')?> </p></a>
 		</li>
 		<li>
-			<a class="justify-content-between d-flex" href="<?= base_url('employers/packages/bought_new_package'); ?>"><p><i class="fa fa-th-large pr-2"></i>New Package</p></a>
+			<a class="justify-content-between d-flex" href="<?= base_url('employers/packages/bought_new_package'); ?>"><p><i class="fa fa-th-large pr-2"></i> <?=trans('new_package')?></p></a>
 		</li>
 		<li>
 			<a class="justify-content-between d-flex" href="<?= base_url('employers/cv/shortlisted') ?>"><p><i class="fa fa-briefcase pr-2"></i>  <?=trans('shortlisted_resumes')?></p></a>

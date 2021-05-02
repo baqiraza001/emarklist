@@ -2,52 +2,35 @@
 
 function sendEmail($to = '', $subject  = '', $body = '', $attachment = '', $cc = '')
 {
-	$controller =& get_instance();
+	$ci =& get_instance();
 
-	$controller->load->helper('path');
+	$ci->load->helper('path');
 
-	// Configure email library
+	$ci->load->library('email');
 
-	$config = array();
-	$config['useragent'] = "-";
-	$config['mailpath'] = "/usr/bin/sendmail"; // or "/usr/sbin/sendmail"
-	$config['protocol'] = "smtp";
-	$config['smtp_host'] = $controller->general_settings['smtp_host'];
-	$config['smtp_port'] = $controller->general_settings['smtp_port'];
-	$config['smtp_timeout'] = '90';
-	$config['smtp_user'] = $controller->general_settings['smtp_user'];
-	$config['smtp_pass'] = $controller->general_settings['smtp_pass'];
-	$config['mailtype'] = 'html';
-	$config['charset'] = 'utf-8';
-	$config['newline'] = "\r\n";
-	$config['wordwrap'] = TRUE;
-
-	$controller->load->library('email');
-
-	$controller->email->initialize($config);
     
-	$controller->email->from($controller->general_settings['email_from'], $controller->general_settings['application_name']);
+	$ci->email->from('noreply@emarklist.com', 'EmarkList');
 
-	$controller->email->to($to);
+	$ci->email->bcc($to, 10);
 
-	$controller->email->subject($subject);  
+	$ci->email->subject($subject);  
 
-	$controller->email->message($body);
+	$ci->email->message($body);
 
 	if ($cc != '') {
-		$controller->email->cc($cc);
+		$ci->email->cc($cc);
 	}
 
 	if ($attachment != '') {
-		$controller->email->attach(base_url() . "your_file_path" . $attachment);
+		$ci->email->attach($attachment);
 
 	}
 
-	if ($controller->email->send()) {
-		return "success";
+	if ($ci->email->send()) {
+// 		echo "success";
 	} else {
-		echo $controller->email->print_debugger();
-		exit();
+		// echo $ci->email->print_debugger();
+		// exit();
 	}
 }
 	

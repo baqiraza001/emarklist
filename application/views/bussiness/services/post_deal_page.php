@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/plugins/texteditor/lib/css/prettify.css"></link>
 <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/plugins/texteditor/src/bootstrap-wysihtml5.css"></link>
+<script src="<?= base_url(); ?>assets/js/html-duration-picker.min.js"></script>
 
 <!-- start banner Area -->
 <section class="banner-area relative" id="home">	
@@ -73,42 +74,10 @@
 									</div>
 								</div>
 
-								<div class="col-md-12 col-sm-12">
-									<!-- <div class="submit-field"> -->
-
+								<div class="col-md-6 col-sm-12">
 										<div class="submit-field">
 										<h5>Add Category (If not found on uper list)</h5>		
 										<input type="text" name="add_category" class="form-control">
-									<!-- </div> -->
-									</div>
-								</div>
-
-								<div class="col-md-6 col-sm-12">
-									<div class="submit-field">
-										<h5>Price *</h5>
-<!-- 										<div class="row"> -->
-<!-- 											<div class="col-md-4">
-												<div class="input-group"> -->
-													<input type="number" name="price" class="form-control" placeholder="<?=trans('minimum')?>">
-												<!-- </div>
-											</div> -->
-<!-- 											<div class="col-md-4">
-												<div class="input-group">
-													<input type="number" name="max_salary" class="form-control" placeholder="<?=trans('maximum')?>">
-												</div>
-											</div>
-
-											<div class="col-md-4">
-												<div class="submit-field">
-													<select name="currency_type" class="country form-control">
-														<option value="">Select Salary</option>
-														<option value="1">USD</option>
-														<option value="2">Naira</option>
-													</select>
-												</div>
-											</div> 
-
-										</div>-->
 									</div>
 								</div>
 								<div class="col-md-6 col-sm-12">
@@ -117,12 +86,6 @@
 										<input type="date" name="expiry_date" class="form-control" placeholder="">
 									</div>
 								</div>
-<!-- 								<div class="col-md-6 col-sm-12">
-									<div class="submit-field">
-										<h5>Add Category (If not found on uper list)</h5>
-										<input type="text" name="add_category" class="form-control">
-									</div>
-								</div> -->
 								<div class="col-md-12 col-sm-12">
 									<div class="submit-field">
 										<h5>Deal Description *</h5>
@@ -130,29 +93,12 @@
 									</div>
 								</div>
 								
-<!-- 								<div class="col-md-6 col-sm-12">
-									<div class="submit-field"> 
-										<h5>Service For *</h5>
-										<select name="gender" class="form-control">	
-									   		<option value="Male"><?=trans('male')?></option>
-									   		<option value="Female"><?=trans('female')?></option>
-									   		<option value="No Preference" selected=""><?=trans('no_preference')?></option>
-										</select>
-									</div>
-								</div> -->
-								
-<!-- 								<div class="col-12">
-									<div class="submit-field">
-										<h5>Address *</h5>
-										<input type="text" name="location" class="form-control" placeholder="<?=trans('type_address')?>">
-									</div>
-								</div> -->
 								<div class="col-12">
-				                  <div class="submit-field">
-				                    <h5>Upload Photo</h5>
-				                    <input type="file" name="userfile[]" class="form-control" multiple="multiple">
-				                  </div>
-				                </div>
+                  <div class="submit-field">
+                    <h5>Upload Photo</h5>
+                    <input type="file" name="userfile[]" class="form-control" multiple="multiple">
+                  </div>
+                </div>
 							</div>
 						</div>
 					</div>

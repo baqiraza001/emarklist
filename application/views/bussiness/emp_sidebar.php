@@ -23,7 +23,7 @@
 			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/company'); ?>"><p><i class="fa fa-user-o pr-2"></i>  <?=trans('company_profile')?></p></a>
 		</li>
 		<li>
-			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/job/add_staff'); ?>"><p><i class="fa fa-plus pr-2"></i> <?=trans('add_staff')?></p></a>
+			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/staff/add_staff'); ?>"><p><i class="fa fa-plus pr-2"></i> <?=trans('add_staff')?></p></a>
 		</li>
 		<li>
 			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/job/post'); ?>"><p><i class="fa fa-plus pr-2"></i>  <?=trans('post_new_job')?></p></a>
@@ -35,16 +35,25 @@
 			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/service/post_product'); ?>"><p><i class="fa fa-plus pr-2"></i>Posting Product</p></a>
 		</li>
 		<li>
+      <a class="" href="<?= base_url('bussiness/products/'); ?>"><p><i class="fa fa-shopping-cart pr-2"></i> <?=trans('label_my_products')?></p></a>
+    </li>
+		<li>
 			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/service/post_deal'); ?>"><p><i class="fa fa-plus pr-2"></i>Posting Deals</p></a>
 		</li>
+		<li>
+      <a class="" href="<?= base_url('bussiness/deals/'); ?>"><p><i class="fa fa-shopping-cart pr-2"></i> <?=trans('label_my_deals')?></p></a>
+    </li>
 		<li>
 			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/job/listing'); ?>"><p><i class="fa fa-list pr-2"></i>  <!-- <?=trans('label_manage_jobs')?> -->Manage Jobs/Services</p></a>
 		</li>
 		<li>
+      <a class="" href="<?= base_url('bussiness/orders/'); ?>"><p><i class="fa fa-shopping-cart pr-2"></i> <?=trans('label_my_orders')?></p></a>
+    </li>
+		<li>
 			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/packages/bought'); ?>"><p><i class="fa fa-th-large pr-2"></i> <?=trans('my_packages')?> </p></a>
 		</li>
 		<li>
-			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/packages/bought_new_package'); ?>"><p><i class="fa fa-th-large pr-2"></i>New Package</p></a>
+			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/packages/bought_new_package'); ?>"><p><i class="fa fa-th-large pr-2"></i> <?=trans('new_package')?></p></a>
 		</li>
 		<li>
 			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/cv/shortlisted') ?>"><p><i class="fa fa-briefcase pr-2"></i>  <?=trans('shortlisted_resumes')?></p></a>

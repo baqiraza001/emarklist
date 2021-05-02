@@ -1,4 +1,4 @@
-<?php 
+f<?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Company extends Main_Controller{
@@ -41,7 +41,7 @@ class Company extends Main_Controller{
 		$this->load->view('layout', $data);
 	}
 	// Company Detail
-	public function detail1($title)
+	public function detail1($title = '')
 	{
 		$company_id = get_company_id($title);
 

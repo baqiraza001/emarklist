@@ -8,11 +8,11 @@
 
 		//--------------------------------------------------------
 		// Paginaiton function 
-		public function pagination_config($url,$count,$perpage) 
+		public function pagination_config($url,$total_rows,$perpage) 
 		{
 			$config = array();
 			$config["base_url"] = $url;
-			$config["total_rows"] = $count;
+			$config["total_rows"] = $total_rows;
 			$config["per_page"] = $perpage;
 			$config['full_tag_open'] = '<ul class="pagination pagination-split">';
 			$config['full_tag_close'] = '</ul>';
@@ -35,6 +35,11 @@
 			$config['last_link'] = '&gt;&gt;';
 			return $config;
 		}
+
+		// pagination function
+		
+
+		
 
 
 		// --------------------------------------------------------------

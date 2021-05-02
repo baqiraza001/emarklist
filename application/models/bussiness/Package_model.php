@@ -257,17 +257,17 @@ class Package_Model extends CI_Model{
 		// Get jobs for home page
 	public function get_deals($limit, $offset)
 	{
-		$this->db->select('id, title, company_id, job_slug, job_type, description, country, city, created_date, industry');
-		$this->db->from('xx_job_post');
+		$this->db->select('id, title, company_id, deal_slug, deal_type, description,expiry_date, created_date, industry');
+		$this->db->from('xx_deal_post');
+		
 		$this->db->where('is_status', 'active');
-		$this->db->where('posting_type', '2');
 		$this->db->where('curdate() <  expiry_date');
 		$this->db->order_by('created_date','desc');
+		$this->db->group_by('id');
 		$this->db->limit($limit, $offset);
 		$query = $this->db->get();
-		//echo $this->db->last_query();exit;
-
 		return $query->result_array();
+
 	}
 
 	//----------------------------------------------------

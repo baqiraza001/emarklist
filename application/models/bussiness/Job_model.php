@@ -77,6 +77,35 @@ class Job_Model extends CI_Model{
 		return true;
 	}
 
+	public function get_service($serivce_id = 0, $employer_id = 0)
+	{
+		$this->db->select('xx_job_post.*, xx_service_type.name as service_name,
+			xx_service_category.name as category_name');
+		$this->db->from('xx_job_post');
+		$this->db->join(' xx_service_type', 'xx_job_post.job_type= xx_service_type.id', 'left');
+		$this->db->join(' xx_service_category', 'xx_job_post.category= xx_service_category.id', 'left');
+		$this->db->where('xx_job_post.employer_id', $employer_id);
+		$this->db->where('xx_job_post.id', $serivce_id);
+
+		$query = $this->db->get();
+		return $query->row_array();
+	}
+
+	
+	public function get_serivce_media($serivce_id = 0)
+	{
+		return $this->db->select('name')
+		->where('job/service_id',$service_id)
+		->get('xx_service_media')
+		->result();
+	}
+
+	public function delete_media($serivce_id = 0)
+	{
+		$this->db->where('job/service_id',$serivce_id);
+		$this->db->delete('xx_service_media');
+	}
+
 }//end class
 
 ?>

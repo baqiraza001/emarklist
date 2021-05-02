@@ -34,6 +34,7 @@
         {
             $ci =& get_instance();
             $ci->db->select('*');
+            $ci->db->order_by('grid_column');
             return $ci->db->get('xx_footer_settings')->result_array();
         }
     }
@@ -417,7 +418,7 @@
     function get_city_id($title)
     {
         $ci = & get_instance();
-        return $ci->db->get_where('xx_cities', array('slug' => $title))->row_array()['id'];
+        return $ci->db->get_where('xx_cities', array('slug' => $title, 'status' => 1))->row_array()['id'];
     }
 
     // -----------------------------------------------------------------------------
@@ -442,6 +443,16 @@
         $ci = & get_instance();
         return $ci->db->get('xx_job_type')->result_array();
     }
+
+     // Get job by posting type
+    function get_job_post_by_posting_type($posting_type = 1, $company_id = 0)
+    {
+        $ci = & get_instance();
+        $ci->db->where('posting_type',$posting_type);
+        $ci->db->where('company_id',$company_id);
+        return $ci->db->get('xx_job_post')->result();
+    }
+
     function get_service_type_list()
     {
         $ci = & get_instance();
@@ -524,7 +535,7 @@
     function get_company_name_by_employer($emp_id)
     {
         $ci = & get_instance();
-        return $ci->db->get_where('xx_companies', array('employer_id' => $emp_id))->row_array()['company_name'];
+        return $ci->db->get_where('xx_companies', array('xx_companies.employer_id' => $emp_id))->row_array()['company_name'];
     }
 
     // -----------------------------------------------------------------------------
@@ -532,7 +543,7 @@
     function get_company_id_by_employer($emp_id)
     {
         $ci = & get_instance();
-        return $ci->db->get_where('xx_companies', array('employer_id' => $emp_id))->row_array()['id'];
+        return $ci->db->get_where('xx_companies', array('xx_companies.employer_id' => $emp_id))->row_array()['id'];
     }
 
     // -----------------------------------------------------------------------------
@@ -660,6 +671,26 @@ function trans($string)
 {
     $ci =& get_instance();
     return $ci->lang->line($string);
+}
+
+
+/* Get week days */
+function weekDays()
+{
+    return array(
+        '1' => 'Sunday',
+        '2' => 'Monday',
+        '3' => 'Tuesday',
+        '4' => 'Wednesday',
+        '5' => 'Thursday',
+        '6' => 'Friday',
+        '7' => 'Saturday',
+    );
+}
+
+function HHMMToMinutes($HHMM='')
+{
+    return (substr($HHMM, 0, 2) * 60) + substr($HHMM, 3);
 }
 
 ?>

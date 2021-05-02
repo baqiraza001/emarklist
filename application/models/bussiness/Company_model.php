@@ -39,9 +39,9 @@ class Company_Model extends CI_Model{
 
 	//----------------------------------------------------------------------
 	// Get company info
-	public function get_info_by_id($e_id)
+	public function get_info_by_id($id)
 	{
-		$query = $this->db->get_where('xx_company_info', array('employer_id' => $e_id ));
+		$query = $this->db->get_where('xx_company_info', array('id' => $id ));
 		return $result = $query->row_array();
 	}
 		

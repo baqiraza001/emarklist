@@ -26,6 +26,9 @@
       <a class="" href="<?= base_url('myjobs/saved'); ?>"><p><i class="fa fa-heart-o pr-2"></i> <?=trans('label_saved_jobs')?></p></a>
     </li>
     <li>
+      <a class="" href="<?= base_url('orders/'); ?>"><p><i class="fa fa-shopping-cart pr-2"></i> <?=trans('label_my_orders')?></p></a>
+    </li>
+    <li>
       <a class="" href="<?= base_url('account/change_password'); ?>"><p><i class="fa fa-lock pr-2"></i> <?=trans('label_change_pass')?></p></a>
     </li>
     <li>

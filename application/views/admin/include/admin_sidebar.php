@@ -297,25 +297,6 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
         </li>
       </ul> 
 
-      <ul class="sidebar-menu">
-        <li id="ui" class="treeview">
-            <a href="#">
-              <i class="fa fa-laptop"></i> <span>UI Components</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li id="general"><a href="<?= base_url('admin/ui/general'); ?>"><i class="fa fa-circle-o"></i> General</a></li>
-              <li id="widgets"><a href="<?= base_url('admin/ui/widgets'); ?>"><i class="fa fa-circle-o"></i> Widgets</a></li>
-              <li id="icons"><a href="<?= base_url('admin/ui/icons'); ?>"><i class="fa fa-circle-o"></i> Icons</a></li>
-              <li id="buttons"><a href="<?= base_url('admin/ui/buttons'); ?>"><i class="fa fa-circle-o"></i> Buttons</a></li>
-              <li id="sliders"><a href="<?= base_url('admin/ui/sliders'); ?>"><i class="fa fa-circle-o"></i> Sliders</a></li>
-              <li id="timeline"><a href="<?= base_url('admin/ui/timeline'); ?>"><i class="fa fa-circle-o"></i> Timeline</a></li>
-              <li id="modals"><a href="<?= base_url('admin/ui/modals'); ?>"><i class="fa fa-circle-o"></i> Modals</a></li>
-            </ul>
-          </li>
-      </ul>
 
     </section>
     <!-- /.sidebar -->

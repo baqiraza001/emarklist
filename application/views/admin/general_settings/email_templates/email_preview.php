@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?= $title ?></title>
+    <title><?= $title ?></title>
 </head>
 
 <body>
@@ -345,102 +345,100 @@
 
 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
     <tbody>
-    	<tr>
-	        <td>&nbsp;</td>
-	        <td class="container">
-	            <div class="content">
-	                <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
-	                    <tbody>
-		                	<tr>
-		                        <td style="text-align: center;">
-		                            <div style="height: 70px;width:100%;text-align: center;margin-bottom: 10px;">
-		                                <a href="<?= base_url(); ?>">
-		                                    <img src="<?= base_url($this->general_settings['logo']); ?>" alt="<?= $this->general_settings['application_name']; ?>" style="max-width: 180px;max-height: 70px;">
-		                                </a>
-		                            </div>
-		                        </td>
-		                    </tr>
-	                	</tbody>
-	            	</table>    <!-- START CENTERED WHITE CONTAINER -->
-				    
-				    <table role="presentation" class="main">
-				        <!-- START MAIN CONTENT AREA -->
-				        <tbody>
-				        	<tr>
-					            <td class="wrapper">
-					                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-					                    <tbody><tr>
-					                        <td>
-					                            <h1 style="text-decoration: none; font-size: 24px;line-height: 28px;font-weight: bold"><?= $head ?></h1>
-					                            <div class="mailcontent" style="line-height: 26px;font-size: 14px;">
-					                                <div class="mailcontent" style="line-height: 26px;font-size: 14px;">
-					                                    <p><?= $content ?></p>
-					                                </div>
-					                            </div>
-					                        </td>
-					                    </tr>
-					                </tbody></table>
-					            </td>
-				        	</tr>
-				        <!-- END MAIN CONTENT AREA -->
-				    	</tbody>
-				    </table>
+        <tr>
+            <td>&nbsp;</td>
+            <td class="container">
+                <div class="content">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <div style="height: 70px;width:100%;text-align: center;margin-bottom: 10px;">
+                                        <a href="<?= base_url(); ?>">
+                                            <img src="<?= base_url($this->general_settings['logo']); ?>" alt="<?= $this->general_settings['application_name']; ?>" style="max-width: 180px;max-height: 70px;">
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>    <!-- START CENTERED WHITE CONTAINER -->
+                    
+                    <table role="presentation" class="main">
+                        <!-- START MAIN CONTENT AREA -->
+                        <tbody>
+                            <tr>
+                                <td class="wrapper">
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                        <tbody><tr>
+                                            <td>
+                                                <h1 style="text-decoration: none; font-size: 24px;line-height: 28px;font-weight: bold"><?= $head ?></h1>
+                                                <div class="mailcontent" style="line-height: 26px;font-size: 14px;">
+                                                    <div class="mailcontent" style="line-height: 26px;font-size: 14px;">
+                                                        <p><?= $content ?></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        <!-- END MAIN CONTENT AREA -->
+                        </tbody>
+                    </table>
 
-                    Hello,<div><br>Thank you for signing up with us<br><br>To activate your account and verify your email address,<br><br></div><div>Please click on link bellow <br>{<a target="_blank" rel="nofollow" href="http://bftechlab.net/jobslist/" title="Link: http://bftechlab.net/jobslist/">http://bftechlab.net/jobslist/</a>
-}<br><a target="" rel=""></a></div><div><a target="" rel=""><br></a></div><div><a target="" rel=""><br></a></div><div><a target="" rel="">Regards,<br>Team Onjob</a></div>
 
-				    <!-- SOCIAL LINKS -->
-					<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
-					    <tbody>
-					    	<tr>
-						        <td class="content-block" style="text-align: center;width: 100%;">
-					                <a href="<?= $this->general_settings['facebook_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>facebook.png" alt="" style="width: 28px; height: 28px;">
-					                </a>
+                    <!-- SOCIAL LINKS -->
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+                        <tbody>
+                            <tr>
+                                <td class="content-block" style="text-align: center;width: 100%;">
+                                    <a href="<?= $this->general_settings['facebook_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
+                                        <img src="<?= base_url('assets/dist/img/') ?>facebook.png" alt="" style="width: 28px; height: 28px;">
+                                    </a>
 
-					                <a href="<?= $this->general_settings['twitter_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>twitter.png" alt="" style="width: 28px; height: 28px;">
-					                </a>
+                                    <a href="<?= $this->general_settings['twitter_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
+                                        <img src="<?= base_url('assets/dist/img/') ?>twitter.png" alt="" style="width: 28px; height: 28px;">
+                                    </a>
 
-	                                <a href="<?= $this->general_settings['instagram_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>instagram.png" alt="" style="width: 28px; height: 28px;">
-					                </a>
+                                    <a href="<?= $this->general_settings['instagram_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
+                                        <img src="<?= base_url('assets/dist/img/') ?>instagram.png" alt="" style="width: 28px; height: 28px;">
+                                    </a>
 
-	                                <a href="<?= $this->general_settings['linkedin_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>linkedin.png" alt="" style="width: 28px; height: 28px;">
-					                </a>
-	                                
-	                                <a href="<?= $this->general_settings['youtube_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>youtube.png" alt="" style="width: 28px; height: 28px;">
-					                </a>
+                                    <a href="<?= $this->general_settings['linkedin_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
+                                        <img src="<?= base_url('assets/dist/img/') ?>linkedin.png" alt="" style="width: 28px; height: 28px;">
+                                    </a>
+                                    
+                                    <a href="<?= $this->general_settings['youtube_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
+                                        <img src="<?= base_url('assets/dist/img/') ?>youtube.png" alt="" style="width: 28px; height: 28px;">
+                                    </a>
 
-					                <a href="<?= $this->general_settings['google_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>google.png" alt="" style="width: 28px; height: 28px;">
-					                </a>
-					            </td>
-						    </tr>
-						</tbody>
-					</table>
+                                    <a href="<?= $this->general_settings['google_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
+                                        <img src="<?= base_url('assets/dist/img/') ?>google.png" alt="" style="width: 28px; height: 28px;">
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-					<!-- START FOOTER -->
-					<div class="footer">
-					    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-					        <tbody><tr>
-					            <td class="content-block powered-by">
-					                <?= $this->general_settings['copyright']; ?>      
-					            </td>
-					        </tr>
-					       
-					    </tbody></table>
-					</div>
-					<!-- END FOOTER -->
+                    <!-- START FOOTER -->
+                    <div class="footer">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                            <tbody><tr>
+                                <td class="content-block powered-by">
+                                    <?= $this->general_settings['copyright']; ?>      
+                                </td>
+                            </tr>
+                           
+                        </tbody></table>
+                    </div>
+                    <!-- END FOOTER -->
 
-				<!-- END CENTERED WHITE CONTAINER -->
-				</div>
-			</td>
-			<td>&nbsp;</td>
-		</tr>
-	</tbody>
+                <!-- END CENTERED WHITE CONTAINER -->
+                </div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
 </table>
 
 </body>

@@ -26,40 +26,50 @@
 					<h3><?=trans('your_packages')?></h3>
 				</div>
 				<?php if(empty($package_detail)): ?>
-                  <p class="text-gray"><strong><?=trans('sorry')?>,</strong> <?=trans('no_package_msg')?></p>
-                <?php endif; ?>
+					<p class="text-gray"><strong><?=trans('sorry')?>,</strong> <?=trans('no_package_msg')?></p>
+				<?php endif; ?>
+				<div class="row pt-4 text-center d-flex " style="justify-content: space-evenly;">
+					<?php foreach($package_detail as $package): 
+						if ($package['is_active']==1) {
 
-				<?php foreach($package_detail as $package): 
-					if ($package['is_active']==1) {
+							?>
+							<div class="col-xs-6 col-md-5 ">
+								<div class="card mb-4 box-shadow card-columns">
+									<div class="card-header" style="background-color: #f9f9ff">
+										<h2 class="my-0 font-weight-bold" style="font-size: 23px;"><?= $package['title'] ?></h2>
+										<h4 class="my-0 font-weight-normal mt-3">(<?= $package['no_of_posts'] ?> Posts)</h4>
+										<h4 class="my-0 font-weight-normal mt-3 mb-3" style="font-size: 17px;">Package Duration (<?= $package['no_of_days'] ?> Days)</h4>
+									</div>
+									<div class="card-body">
+										<p class="pt-3"><?=trans('bought_date')?> : <?= date_time($package['buy_date']) ?></p>
+									<p class="pt-3"><?=trans('expiry_date')?> : <?= date_time($package['expire_date']) ?></p>
+									</div>
+									<div class="card border-0">
+										<div class="card-body text-center">
+											<div class="card-text border p-3 mx-auto w-75" style="background-color: #f9f9ff;">
+												<div class="mt-3">
+													<p style="font-size: 30px;" class="text-left">USD</p>
+													<p style="font-size: 45px;letter-spacing: 1px;" class="text-right"><?= $package['price'] ?></p>
+													<p style="margin-top: 30px;" class="">
+														<?php
+														$current_date = date("Y-m-d");
+														if($current_date == $package['expire_date']){ ?>
+															<a class="btn btn-danger mt-3 mb-3 text-white"><?= trans('expired') ?></a><br>
+															<a href="<?= base_url();?>employers/packages/order_confirmation/<?php echo $package['id']; ?>" class="btn btn-success" style="padding: 7px 6px !important;"><?= trans('active') ?></a>
+														<?php } ?>
+													</p>
+													<input type="hidden" name="package_id" value="<?php echo $package['id'];?>" >
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<?php 
+						} 
+					endforeach;
 					?>
-
-				<div class="card m-5">
-					<div class="card-body">
-					    <h4 class="card-title"><?= $package['title'] ?></h4>
-					    <p class="card-text"><?= $package['detail'] ?></p>
-					    <p class="pt-3"><?=trans('num_of_posts')?> : <?= $package['no_of_posts'] ?></p>
-					    <p class="pt-3"><?=trans('num_of_days')?> : <?= $package['no_of_days'] ?></p>
-					    <p class="pt-3"><?=trans('bought_date')?> : <?= date_time($package['buy_date']) ?></p>
-					    <p class="pt-3"><?=trans('expiry_date')?> : <?= date_time($package['expire_date']) ?></p>
-					    <h5 class="pt-3"><?=trans('price')?> : <?= $package['price'] ?> </h5>
-					    <?php
-					    	$current_date = date("Y-m-d");
-					    	if($current_date == $package['expire_date'])
-					    		echo '<a class="btn btn-danger mt-3">'.trans('expired').'</a>';
-
-					    	if($package['is_active'] == 1)
-					    		echo '<a href="" class="btn btn-success mt-3">'.trans('active').'</a>';
-
-					    	if($package['is_active'] == 0)
-					    		echo '<a class="btn btn-danger mt-3">'.trans('deactivated').'</a>';
-					    ?>
-
-
-					  </div>
 				</div>
-				<?php 
-			} 
-			endforeach; ?>
 			</div>
 		</div>
 	</div>

@@ -7,7 +7,7 @@
       <h1 class="text-white">
         <?= $title ?>
       </h1> 
-      <p class="text-white"><a href="<?= base_url(); ?>"><?=trans('label_home')?>Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href=""> <?= $title ?></a></p>
+      <p class="text-white"><a href="<?= base_url(); ?>"><?=trans('label_home')?> </a>  <span class="lnr lnr-arrow-right"></span>  <a href=""> <?= $title ?></a></p>
     </div>                      
   </div>
 </div>

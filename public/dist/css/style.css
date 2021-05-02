@@ -476,5 +476,9 @@ label{
     padding: 10px;
 }
 
-
-/* File Upload */
+/* adjust table columns width to content*/
+.table td, 
+.table th {
+    white-space: nowrap;
+    width: 1%;
+}

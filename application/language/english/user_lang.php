@@ -112,7 +112,8 @@ $lang['active_package']                                 = "Active Package";
 $lang['company_profile']                                = "Company Profile";
 $lang['post_new_job']                                   = "Post New Job";
 $lang['post_new_service']                               = "Post New Service";
-$lang['my_packages']                                    = "My Packages";
+$lang['my_packages']                                    = "My Subscriptions";
+$lang['new_package']                                    = "New Subscription";
 $lang['shortlisted_resumes']                            = "Shortlisted Resumes";
 $lang['free_package_error']                            = "You already used your free package. Please buy paid packages";
 
@@ -188,7 +189,7 @@ $lang['bought_date']                                    = "Bought Date";
 $lang['expiry_date']                                    = "Expiry Date";
 $lang['price']                                          = "Price";
 $lang['expired']                                        = "Expired";
-$lang['active']                                         = "Active";
+$lang['active']                                         = "Activate Package";
 $lang['deactivated']                                    = "Deactivated";
 
 //Shortlisted Resumes
@@ -208,7 +209,7 @@ $lang['applicants_listings']                        = "Applicants Listings";
 $lang['no_applicant']                               = "there is not applicant against this job.";
 $lang['more']                                       = "More";
 $lang['preview_cv']                                 = "Preview CV";
-$lang['email_candidate']                            = "Email Candidate";
+$lang['email_candidate']                            = "Schedule Interview";
 $lang['jobs_applicants']                            = "Jobs Applicants";
 $lang['shortlisted_applicants']                     = "Shortlisted Applicants";
 $land['interview_subject']                          = "Interview Message | OnJob Portal";
@@ -284,8 +285,8 @@ $lang['best_pricing_msg']                                 = "Click the link belo
 $lang['job_limit_expired_msg']                            = "Your Free Job Posting Limit Has Been Expired. Please renew your package";
 $lang['feature_job_expired_msg']                          = "Your Featured Job Posting Limit Has Been Expired. Please renew your package";
 $lang['job_posted_success']                               = "Congratulation! Job has been Posted successfully";
-$lang['job_updated_success']                              = "Congratulation! Job has been Updated successfully";
-$lang['job_deleted_success']                              = "Congratulation! Job has been Deleted successfully";
+$lang['job_updated_success']                              = "Updated successfully";
+$lang['job_deleted_success']                              = "Deleted successfully";
 $lang['personal_info_update_msg']                         = "Personal Info has been updated successfully";
 $lang['select_option']                               = "Selection Option";
 $lang['about_us']                               = "About Us";
@@ -295,3 +296,24 @@ $lang['import_links']                               = "Important Links";
 $lang['']                               = "";
 
 
+//deals
+$lang['deals'] = 'Deals';
+$lang['label_my_deals'] = "My Deals";
+$lang['edit_deal'] = "Edit Deal";
+$lang['deal_edited_success'] = "Deal edited successfully";
+$lang['deal_deleted_success'] = "Deal deleted successfully";
+
+//products
+$lang['products'] = 'Products';
+$lang['label_my_products'] = "My Products";
+$lang['edit_product'] = "Edit Product";
+$lang['product_edited_success'] = "Product edited successfully";
+$lang['product_deleted_success'] = "Product deleted successfully";
+$lang['product_description'] = "Product Description";
+
+
+$lang['edit_service'] = 'Update Service';
+$lang['service_update_success'] = 'Updated successfully';
+$lang['job_country_location'] = 'Job Country Location';
+$lang['date_txt'] = 'Date';
+$lang['zoom_link'] = 'Zoom Link';

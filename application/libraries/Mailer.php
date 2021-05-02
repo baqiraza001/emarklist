@@ -138,7 +138,7 @@ class Mailer
         $to = $user['email'];
 
         $data['content'] = str_replace('{VERIFICATION_LINK}',$varification_link,$temp['body']);
-        //$body           =   str_replace('{verification_code}',$verify_account,$body);
+        // $body           =   str_replace('{verification_code}',$verify_account,$body);
 
         $data['head'] = $temp['subject'];
 
@@ -146,7 +146,7 @@ class Mailer
         
         $template =  $this->CI->load->view('admin/general_settings/email_templates/email_preview', $data,true);
         
-        sendEmail($to,$temp['subject'],$template);
+        sendEmail($to, 'Emarklist Email Account Verification', $template);
 
         return true;
     } 

@@ -392,27 +392,27 @@
 					    	<tr>
 						        <td class="content-block" style="text-align: center;width: 100%;">
 					                <a href="<?= $this->general_settings['facebook_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>facebook.png" alt="" style="width: 28px; height: 28px;">
+					                    <img src="<?= base_url('assets/img/') ?>facebook.png" alt="" style="width: 28px; height: 28px;">
 					                </a>
 
 					                <a href="<?= $this->general_settings['twitter_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>twitter.png" alt="" style="width: 28px; height: 28px;">
+					                    <img src="<?= base_url('assets/img/') ?>twitter.png" alt="" style="width: 28px; height: 28px;">
 					                </a>
 
 	                                <a href="<?= $this->general_settings['instagram_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>instagram.png" alt="" style="width: 28px; height: 28px;">
+					                    <img src="<?= base_url('assets/img/') ?>instagram.png" alt="" style="width: 28px; height: 28px;">
 					                </a>
 
 	                                <a href="<?= $this->general_settings['linkedin_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>linkedin.png" alt="" style="width: 28px; height: 28px;">
+					                    <img src="<?= base_url('assets/img/') ?>linkedin.png" alt="" style="width: 28px; height: 28px;">
 					                </a>
 	                                
 	                                <a href="<?= $this->general_settings['youtube_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>youtube.png" alt="" style="width: 28px; height: 28px;">
+					                    <img src="<?= base_url('assets/img/') ?>youtube.png" alt="" style="width: 28px; height: 28px;">
 					                </a>
 
 					                <a href="<?= $this->general_settings['google_link'] ?>" target="_blank" style="color: transparent;margin-right: 5px;">
-					                    <img src="<?= base_url('assets/dist/img/') ?>google.png" alt="" style="width: 28px; height: 28px;">
+					                    <img src="<?= base_url('assets/img/') ?>google.png" alt="" style="width: 28px; height: 28px;">
 					                </a>
 					            </td>
 						    </tr>

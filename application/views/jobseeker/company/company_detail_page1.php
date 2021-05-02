@@ -103,9 +103,7 @@ function products() {
                 <li><i class="lnr lnr-map-marker"></i> <?= $company_info['address']; ?></li>
               </ul>                   
             </div>
-            <div class="job-listing-footer">
-              <button class="btn btn-danger" style="padding: 7px 60px; border-radius: 4px;">Book Now</button>                   
-            </div>
+           
           </div> 
         </div>
       </div>

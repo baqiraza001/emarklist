@@ -189,10 +189,10 @@ class Auth extends Main_Controller {
 				$buyer_data = $this->security->xss_clean($buyer_data);
 		    	$this->payment_model->insert_buyer_package($buyer_data);
 				
-				if ($result) {
+				if ($emp_id) {
 
 					// --- sending email
-					$this->mailer->send_verification_email($result,'employer');
+					$this->mailer->send_verification_email($emp_id,'employer');
 
 					$this->session->set_flashdata('registration_success','<p class="alert alert-success">'.trans('account_created_msg').'</p>');
 					redirect(base_url('bussiness/auth/login'), 'refresh');
@@ -345,7 +345,7 @@ class Auth extends Main_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect(base_url('bussiness/home'), 'refresh');
+		redirect(base_url('home'), 'refresh');
 	}
 
 }// end classs
