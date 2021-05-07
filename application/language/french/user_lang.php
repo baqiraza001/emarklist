@@ -176,6 +176,7 @@ $lang['add_staff']                                = "Add Staff";
 //My Packages
 $lang['your_packages']                                  = "Vos forfaits";
 $lang['no_package_msg']                                 = "vous n'avez pas encore de paquet actif. S'il vous plaît visitez le lien de tarification sur le menu Navbar!";
+$lang['no_package_found_msg']                                 = "Aucun package actif trouvé";
 $lang['num_of_posts']                                   = "Nombre total de messages";
 $lang['num_of_days']                                    = "Nombre total de jours";
 $lang['bought_date']                                    = "Date d'achat";

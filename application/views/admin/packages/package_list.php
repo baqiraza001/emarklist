@@ -40,7 +40,7 @@
               <td><?= $package['price']; ?></td>
               <td><?= $package['no_of_days']; ?></td>
               <td><?= $package['no_of_posts']; ?></td>
-              <td><?= ($package['package_for'] == 0)? '<span class="btn btn-primary btn-xs">JobSeeker</span>' : '<span class="btn btn-primary btn-xs">Employer</span>' ?></td>
+              <td><?= ($package['package_for'] == 0)? '<span class="btn btn-primary btn-xs">Bussiness</span>' : '<span class="btn btn-primary btn-xs">Employer</span>' ?></td>
               <td><?= ($package['is_active'] == 1)? '<span class="btn btn-success btn-xs">Active</span>' : '<span class="btn btn-warning btn-xs">Inactive'; ?></td>
               <td class="text-right"><a class="btn btn-info btn-xs" href="<?= base_url('admin/packages/edit/'.$package['id']); ?>">Edit</a></td>
             </tr>

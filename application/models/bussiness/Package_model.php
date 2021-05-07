@@ -12,7 +12,7 @@ class Package_Model extends CI_Model{
 
 	{
 
-		$this->db->where('package_for',1); // '1' is for employer
+		$this->db->where('package_for',0); // '0' is for busssssiness
 
 		$this->db->where('is_active', 1);
 
@@ -34,7 +34,7 @@ class Package_Model extends CI_Model{
 
 	{
 
-		$query = $this->db->get_where('xx_packages', array('id' => $id));
+		$query = $this->db->get_where('xx_packages', array('id' => $id, 'package_for' => 0));
 
 		return $result = $query->row_array();
 
@@ -55,7 +55,10 @@ class Package_Model extends CI_Model{
 			xx_packages.title,
 
 			xx_packages.no_of_posts,
-
+			xx_packages.no_of_service_posts,
+			xx_packages.no_of_products_posts,
+			xx_packages.no_of_daily_deals_posts,
+			xx_packages.no_of_staff,
 			xx_packages.no_of_days,
 
 			xx_packages.price,
@@ -67,8 +70,6 @@ class Package_Model extends CI_Model{
 		$this->db->join('xx_packages','xx_packages.id = xx_packages_bought.package_id','left');
 
 		$this->db->where('xx_packages_bought.employer_id', emp_id()); 
-
-		$this->db->where('package_for', 1);
 
 		$this->db->order_by("xx_packages_bought.buy_date", "DESC");
 
@@ -105,9 +106,9 @@ class Package_Model extends CI_Model{
 
 		// $this->db->where('xx_packages_bought.employer_id', $emp_id); 
 
-		// $this->db->where('package_for', 1);
+		$this->db->where('package_for', 0);
 
-		// $this->db->order_by("xx_packages_bought.buy_date", "DESC");
+		$this->db->order_by("xx_packages.sort_order");
 
 		$query = $this->db->get();
 
@@ -135,6 +136,10 @@ class Package_Model extends CI_Model{
 			xx_packages.title,
 
 			xx_packages.no_of_posts,
+			xx_packages.no_of_service_posts,
+			xx_packages.no_of_products_posts,
+			xx_packages.no_of_daily_deals_posts,
+			xx_packages.no_of_staff,
 
 			xx_packages.no_of_days,
 
@@ -149,8 +154,6 @@ class Package_Model extends CI_Model{
 		$this->db->join('xx_packages','xx_packages.id = xx_packages_bought.package_id','left');
 
 		$this->db->where('xx_packages_bought.employer_id', $emp_id); 
-
-		$this->db->where('package_for', 1);
 
 		$this->db->order_by("xx_packages_bought.buy_date", "DESC");
 
@@ -183,6 +186,7 @@ class Package_Model extends CI_Model{
 	{
 
 		$query = $this->db->get_where('xx_packages_bought', array('employer_id' => emp_id(), 'is_active' => 1));
+		$this->db->where('package_for', 0);
 
 		return $result = $query->row_array()['id'];
 
@@ -197,6 +201,7 @@ class Package_Model extends CI_Model{
 	{
 
 		$query = $this->db->get_where('xx_packages', array('price' => '0'));
+		$this->db->where('package_for', 0);
 
 		return $result = $query->row_array();
 		

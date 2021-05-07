@@ -89,6 +89,10 @@ class Packages extends MY_Controller {
 					'no_of_days' => $this->input->post('no_of_days'),
 
 					'no_of_posts' => $this->input->post('no_of_posts'),
+					'no_of_service_posts' => $this->input->post('no_of_service_posts'),
+					'no_of_products_posts' => $this->input->post('no_of_products_posts'),
+					'no_of_daily_deals_posts' => $this->input->post('no_of_daily_deals_posts'),
+					'no_of_staff' => $this->input->post('no_of_staff'),
 
 					'sort_order' => $this->input->post('sort_order'),
 
@@ -185,7 +189,10 @@ class Packages extends MY_Controller {
 					'no_of_days' => $this->input->post('no_of_days'),
 
 					'no_of_posts' => $this->input->post('no_of_posts'),
-
+					'no_of_service_posts' => $this->input->post('no_of_service_posts'),
+					'no_of_products_posts' => $this->input->post('no_of_products_posts'),
+					'no_of_daily_deals_posts' => $this->input->post('no_of_daily_deals_posts'),
+					'no_of_staff' => $this->input->post('no_of_staff'),
 					'sort_order' => $this->input->post('sort_order'),
 
 					'is_active' => $this->input->post('status'),

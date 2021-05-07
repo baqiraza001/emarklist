@@ -35,16 +35,16 @@ class Service extends Main_Controller {
 		}
 
 		// free job post 
-		$total_free_jobs = $this->job_model->count_posted_jobs($pkg_id, 0, $pkg['payment_id']);
-		if($total_free_jobs >= $pkg['no_of_posts']){
+		$total_free_jobs = $this->job_model->count_posted_services($pkg_id, 0, $pkg['payment_id']);
+		if($total_free_jobs >= $pkg['no_of_service_posts']){
 			$this->session->set_flashdata('expire',trans('job_limit_expired_msg'));
 			redirect(base_url('bussiness/service/expire'));
 			exit();
 		}
 
 		// featured job post
-		$total_featured_jobs = $this->job_model->count_posted_jobs($pkg_id, 1, $pkg['payment_id']);
-		if($total_featured_jobs >= $pkg['no_of_posts']){
+		$total_featured_jobs = $this->job_model->count_posted_services($pkg_id, 1, $pkg['payment_id']);
+		if($total_featured_jobs >= $pkg['no_of_service_posts']){
 			$this->session->set_flashdata('expire',trans('feature_job_expired_msg'));
 			redirect(base_url('bussiness/service/expire'));
 			exit();
@@ -151,14 +151,6 @@ class Service extends Main_Controller {
 				$result = $this->job_model->add_featured_job($featured_data);
 
 				
-				// $config['upload_path']          = './uploads/service_images';
-    //             $config['allowed_types']        = 'gif|jpg|png';
-    //             $config['max_size']             = 100;
-    //             $config['max_width']            = 1024;
-    //             $config['max_height']           = 768;
-
-
-
 				$dataInfo = array();
 
 				$files = $_FILES;
@@ -313,31 +305,31 @@ class Service extends Main_Controller {
 			/* delete old images */
 
 			$this->load->library('upload');
-	    $files = $_FILES;
-	    $cpt = count($_FILES['userfile']['name']);
-	    if($_FILES['userfile']['name'][0] !== '')
-	    {
-		    for($i=0; $i<$cpt; $i++)
-		    {           
-		        $_FILES['userfile']['name']= $files['userfile']['name'][$i];
-		        $_FILES['userfile']['type']= $files['userfile']['type'][$i];
-		        $_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
-		        $_FILES['userfile']['error']= $files['userfile']['error'][$i];
-		        $_FILES['userfile']['size']= $files['userfile']['size'][$i];    
+			$files = $_FILES;
+			$cpt = count($_FILES['userfile']['name']);
+			if($_FILES['userfile']['name'][0] !== '')
+			{
+				for($i=0; $i<$cpt; $i++)
+				{           
+					$_FILES['userfile']['name']= $files['userfile']['name'][$i];
+					$_FILES['userfile']['type']= $files['userfile']['type'][$i];
+					$_FILES['userfile']['tmp_name']= $files['userfile']['tmp_name'][$i];
+					$_FILES['userfile']['error']= $files['userfile']['error'][$i];
+					$_FILES['userfile']['size']= $files['userfile']['size'][$i];    
 
-		        $this->upload->initialize($this->set_upload_options($path));
-		        $this->upload->do_upload();
-		        $dataInfo[] = $this->upload->data();
+					$this->upload->initialize($this->set_upload_options($path));
+					$this->upload->do_upload();
+					$dataInfo[] = $this->upload->data();
 
-		        $add_data = array(
-			        'name' => $dataInfo[$i]['file_name'],
-							'job/service_id' => $job_id,
-			        'created_time' => date('Y-m-d H:i:s')
-			     );
+					$add_data = array(
+						'name' => $dataInfo[$i]['file_name'],
+						'job/service_id' => $job_id,
+						'created_time' => date('Y-m-d H:i:s')
+					);
 
 					$this->common_model->safe_insert('xx_service_media', $add_data, FALSE);
-		    }
-		  }
+				}
+			}
 
 			$this->session->set_flashdata('update_success',trans('service_update_success'));
 			redirect(base_url('bussiness/job/listing'));
@@ -357,16 +349,16 @@ class Service extends Main_Controller {
 		}
 
 		// free job post 
-		$total_free_jobs = $this->job_model->count_posted_jobs($pkg_id, 0, $pkg['payment_id']);
-		if($total_free_jobs >= $pkg['no_of_posts']){
+		$total_free_jobs = $this->job_model->count_posted_products($pkg_id, 0, $pkg['payment_id']);
+		if($total_free_jobs >= $pkg['no_of_products_posts']){
 			$this->session->set_flashdata('expire',trans('job_limit_expired_msg'));
 			redirect(base_url('bussiness/service/expire'));
 			exit();
 		}
 
 		// featured job post
-		$total_featured_jobs = $this->job_model->count_posted_jobs($pkg_id, 1, $pkg['payment_id']);
-		if($total_featured_jobs >= $pkg['no_of_posts']){
+		$total_featured_jobs = $this->job_model->count_posted_products($pkg_id, 1, $pkg['payment_id']);
+		if($total_featured_jobs >= $pkg['no_of_products_posts']){
 			$this->session->set_flashdata('expire',trans('feature_job_expired_msg'));
 			redirect(base_url('bussiness/service/expire'));
 			exit();
@@ -447,6 +439,17 @@ class Service extends Main_Controller {
 
 				$job_id = $this->job_model->add_product($data);
 
+				$featured_data = array(
+					'employer_id' => $emp_id,
+					'product_id' => $job_id,
+					'package_id' => $pkg['package_id'],
+					'payment_id' => $pkg['payment_id'],
+					'is_featured' => ($pkg['price'] == 0)? 0 : 1
+				);
+
+				$result = $this->job_model->add_featured_job($featured_data);
+
+
 				$dataInfo = array();
 
 				$files = $_FILES;
@@ -506,16 +509,16 @@ class Service extends Main_Controller {
 		}
 
 		// free job post 
-		$total_free_jobs = $this->job_model->count_posted_jobs($pkg_id, 0, $pkg['payment_id']);
-		if($total_free_jobs >= $pkg['no_of_posts']){
+		$total_free_jobs = $this->job_model->count_posted_deals($pkg_id, 0, $pkg['payment_id']);
+		if($total_free_jobs >= $pkg['no_of_daily_deals_posts']){
 			$this->session->set_flashdata('expire',trans('job_limit_expired_msg'));
 			redirect(base_url('bussiness/service/expire'));
 			exit();
 		}
 
 		// featured job post
-		$total_featured_jobs = $this->job_model->count_posted_jobs($pkg_id, 1, $pkg['payment_id']);
-		if($total_featured_jobs >= $pkg['no_of_posts']){
+		$total_featured_jobs = $this->job_model->count_posted_deals($pkg_id, 1, $pkg['payment_id']);
+		if($total_featured_jobs >= $pkg['no_of_daily_deals_posts']){
 			$this->session->set_flashdata('expire',trans('feature_job_expired_msg'));
 			redirect(base_url('bussiness/service/expire'));
 			exit();
@@ -532,23 +535,7 @@ class Service extends Main_Controller {
 		if ($this->input->post('post_job')) {
 			$this->form_validation->set_rules('deal_title','job title','trim|required|min_length[3]');
 			$this->form_validation->set_rules('deal_type','Service type','trim|required');
-			//$this->form_validation->set_rules('deal_category','category','trim|required');
-			//$this->form_validation->set_rules('industry','industry','trim|required');
-			$this->form_validation->set_rules('price','Price','trim|required');
-			// $this->form_validation->set_rules('max_experience','max experience','trim|required');
-			// $this->form_validation->set_rules('min_salary','min salary','trim|required');
-			// $this->form_validation->set_rules('max_salary','max salary','trim|required');
-			// $this->form_validation->set_rules('salary_period','salary period','trim|required');
-			// $this->form_validation->set_rules('skills','skills','trim|required');
 			$this->form_validation->set_rules('deal_description','description','trim|required|min_length[3]');
-			//$this->form_validation->set_rules('total_positions','total positions','trim|required');
-			//$this->form_validation->set_rules('gender','gender','trim|required');
-			//$this->form_validation->set_rules('employment_type','employment type','trim|required');
-			//$this->form_validation->set_rules('education','education','trim|required');
-			//$this->form_validation->set_rules('country','country','trim|required');
-			//$this->form_validation->set_rules('state','state','trim|required');
-			//$this->form_validation->set_rules('city','city','trim|required');
-			//$this->form_validation->set_rules('location','location','trim|required');
 
 			if ($this->form_validation->run() == FALSE) {
 				$data = array(
@@ -562,7 +549,6 @@ class Service extends Main_Controller {
 				if ($this->input->post('deal_category')!="") {
 					$data = array(
 						'employer_id' => $emp_id,
-					//'brand_name' => $this->input->post('brand_name'),
 					'company_id' => get_company_id_by_employer($emp_id), // helper function
 					'title' => $this->input->post('deal_title'),
 					'deal_type' => $this->input->post('deal_type'),
@@ -586,7 +572,7 @@ class Service extends Main_Controller {
 					$add_category_by_user=$this->safe_insert('xx_service_category', $category_data, FALSE);
 
 					$data = array(
-					'employer_id' => $emp_id,
+						'employer_id' => $emp_id,
 					'company_id' => get_company_id_by_employer($emp_id), // helper function
 					'title' => $this->input->post('deal_title'),
 					'deal_type' => $this->input->post('deal_type'),
@@ -604,22 +590,15 @@ class Service extends Main_Controller {
 
 				$job_id = $this->job_model->add_deal($data);
 
-				// $featured_data = array(
-				// 	'employer_id' => $emp_id,
-				// 	'job_id' => $job_id,
-				// 	'package_id' => $pkg['package_id'],
-				// 	'payment_id' => $pkg['payment_id'],
-				// 	'is_featured' => ($pkg['price'] == 0)? 0 : 1
-				// );
+				$featured_data = array(
+					'employer_id' => $emp_id,
+					'daily_deal_id' => $job_id,
+					'package_id' => $pkg['package_id'],
+					'payment_id' => $pkg['payment_id'],
+					'is_featured' => ($pkg['price'] == 0)? 0 : 1
+				);
 
-				// $result = $this->job_model->add_featured_job($featured_data);
-
-				
-				// $config['upload_path']          = './uploads/service_images';
-    //             $config['allowed_types']        = 'gif|jpg|png';
-    //             $config['max_size']             = 100;
-    //             $config['max_width']            = 1024;
-    //             $config['max_height']           = 768;
+				$result = $this->job_model->add_featured_job($featured_data);
 
 
 

@@ -166,9 +166,7 @@ class Packages extends Main_Controller {
 		$emp_id = $this->session->userdata('employer_id');
 
 
-
 		$data['package_detail'] = $this->package_model->get_all_packages();
-
 
 
 		$data['emp_sidebar'] = 'employers/emp_sidebar'; // load sidebar for employer
@@ -204,7 +202,7 @@ class Packages extends Main_Controller {
 		if($price == '0')
 		{
 			$this->session->set_flashdata('errors',trans('free_package_error'));
-			redirect(base_url('employers/dashboard'));
+			redirect(base_url('employers/packages/bought_new_package'));
 		}
 
 		$data['title'] = trans('order_confirmation');
@@ -360,7 +358,7 @@ class Packages extends Main_Controller {
 
 
 			$item_price = $this->input->post('item_price');
-
+			$item_price = $item_price * 100;
 			// $domain_list = $this->input->post('domain_list');
 
 			$currency = "USD";

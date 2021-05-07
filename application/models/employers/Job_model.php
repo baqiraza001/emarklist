@@ -23,10 +23,20 @@ class Job_Model extends CI_Model{
 	// Total Job Posted
 	public function count_posted_jobs($pkg_id, $is_featured, $payment_id)
 	{
+		$this->db->select('job_id')->from('xx_job_post_featured');
 		$this->db->where('package_id', $pkg_id);
 		$this->db->where('payment_id', $payment_id);
 		$this->db->where('is_featured', $is_featured);
-		return $this->db->count_all_results('xx_job_post_featured');
+		$this->db->where('employer_id', emp_id());
+
+		$job_ids = $this->db->get()->result();
+		$job_ids = array_column($job_ids, 'job_id');
+
+		if(empty($job_ids))
+			return 0;
+		$this->db->where_in('id', $job_ids);
+		$this->db->where('posting_type',1);
+		return $this->db->count_all_results('xx_job_post');
 	}
 
 	//----------------------------------------------------------------------

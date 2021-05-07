@@ -33,6 +33,25 @@ class Staff_model extends CI_Model{
 		return  $this->db->get()->result_array();
 	}
 
+
+	public function get_appointments($company_id = 0)
+	{
+		$this->db->select('xx_book_service.id as appointment_id, xx_book_service.staff_id, slot, date_created, xx_staff.service_id, xx_staff.name,firstname, lastname, email, mobile_no, title');
+		$this->db->from('xx_book_service');
+    $this->db->join('xx_staff', 'xx_book_service.staff_id = xx_staff.id', 'left');
+    $this->db->join('xx_job_post', 'xx_staff.service_id = xx_job_post.id', 'left');
+    $this->db->join('xx_users', 'xx_book_service.user_id = xx_users.id', 'left');
+		$this->db->where('company_id', $company_id);
+		$this->db->order_by('xx_book_service.id', 'desc');
+		return  $this->db->get()->result();
+	}
+
+	public function delete_appointment($appointment_id)
+	{
+		$this->db->where('id', $appointment_id);
+		$this->db->delete('xx_book_service');
+	}
+
 }
 
 ?>

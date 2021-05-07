@@ -34,11 +34,104 @@ class Job_Model extends CI_Model{
 	// Total Job Posted
 	public function count_posted_jobs($pkg_id, $is_featured, $payment_id)
 	{
+		$this->db->select('job_id')->from('xx_job_post_featured');
 		$this->db->where('package_id', $pkg_id);
 		$this->db->where('payment_id', $payment_id);
 		$this->db->where('is_featured', $is_featured);
-		return $this->db->count_all_results('xx_job_post_featured');
+		$this->db->where('employer_id', emp_id());
+
+		$job_ids = $this->db->get()->result();
+		$job_ids = array_column($job_ids, 'job_id');
+
+		if(empty($job_ids))
+			return 0;
+		$this->db->where_in('id', $job_ids);
+		$this->db->where('posting_type',1);
+		return $this->db->count_all_results('xx_job_post');
 	}
+
+	//----------------------------------------------------------------------
+	// Total service Posted
+	public function count_posted_services($pkg_id, $is_featured, $payment_id)
+	{
+		$this->db->select('job_id')->from('xx_job_post_featured');
+		$this->db->where('package_id', $pkg_id);
+		$this->db->where('payment_id', $payment_id);
+		$this->db->where('is_featured', $is_featured);
+		$this->db->where('employer_id', emp_id());
+
+		$job_ids = $this->db->get()->result();
+		$job_ids = array_column($job_ids, 'job_id');
+		
+		if(empty($job_ids))
+			return 0;
+		$this->db->where_in('id', $job_ids);
+		$this->db->where('posting_type',2);
+		return $this->db->count_all_results('xx_job_post');
+	}
+
+
+	//----------------------------------------------------------------------
+	// Total Products Posted
+	public function count_posted_products($pkg_id, $is_featured, $payment_id)
+	{
+		$this->db->select('product_id')->from('xx_job_post_featured');
+		$this->db->where('package_id', $pkg_id);
+		$this->db->where('payment_id', $payment_id);
+		$this->db->where('is_featured', $is_featured);
+		$this->db->where('employer_id', emp_id());
+
+		$product_ids = $this->db->get()->result();
+		$product_ids = array_column($product_ids, 'product_id');
+		
+		if(empty($product_ids))
+			return 0;
+
+		$this->db->where_in('id', $product_ids);
+		return $this->db->count_all_results('xx_product_post');
+	}
+
+	//----------------------------------------------------------------------
+	// Total Daily Deals Posted
+	public function count_posted_deals($pkg_id, $is_featured, $payment_id)
+	{
+		$this->db->select('daily_deal_id')->from('xx_job_post_featured');
+		$this->db->where('package_id', $pkg_id);
+		$this->db->where('payment_id', $payment_id);
+		$this->db->where('is_featured', $is_featured);
+		$this->db->where('employer_id', emp_id());
+
+		$daily_deals_ids = $this->db->get()->result();
+		$daily_deals_ids = array_column($daily_deals_ids, 'daily_deal_id');
+		
+		if(empty($daily_deals_ids))
+			return 0;
+		
+		$this->db->where_in('id', $daily_deals_ids);
+		return $this->db->count_all_results('xx_deal_post');
+	}
+
+
+	//----------------------------------------------------------------------
+	// Total Staff added
+	public function count_posted_staff($pkg_id, $is_featured, $payment_id)
+	{
+		$this->db->select('staff_id')->from('xx_job_post_featured');
+		$this->db->where('package_id', $pkg_id);
+		$this->db->where('payment_id', $payment_id);
+		$this->db->where('is_featured', $is_featured);
+		$this->db->where('employer_id', emp_id());
+
+		$staff_ids = $this->db->get()->result();
+		$staff_ids = array_column($staff_ids, 'staff_id');
+		
+		if(empty($staff_ids))
+			return 0;
+		
+		$this->db->where_in('id', $staff_ids);
+		return $this->db->count_all_results('xx_staff');
+	}
+
 
 	//----------------------------------------------------------------------
 	// Get Jobs

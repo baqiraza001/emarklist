@@ -7,7 +7,8 @@ class Job_Model extends CI_Model{
 	public function count_all_jobs()
 	{
 		$this->db->where('is_status', 'active');
-		return $this->db->count_all('xx_job_post');
+		$this->db->where('curdate() <  expiry_date');
+		return $this->db->count_all_results('xx_job_post');
 	}
 	public function count_all_deals()
 	{

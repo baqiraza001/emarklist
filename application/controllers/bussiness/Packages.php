@@ -184,7 +184,6 @@ class Packages extends Main_Controller {
 	}
 
 	public function order_confirmation()
-
 	{
 
 		$this->rbac->check_emp_authentiction();
@@ -197,13 +196,19 @@ class Packages extends Main_Controller {
 		}
 
 		$data['package_detail'] = $this->package_model->get_package_by_id($package_id);
+		$price = $data['package_detail'];
+		$new_package_id = $data['package_detail']['id'];
 
-		$price = $data['package_detail']['price'];
+		if(empty($new_package_id))
+		{
+			$this->session->set_flashdata('errors','Invalid package');
+			redirect(base_url('bussiness/packages/bought_new_package'));
+		}
 
 		if($price == '0')
 		{
 			$this->session->set_flashdata('errors',trans('free_package_error'));
-			redirect(base_url('bussiness/dashboard'));
+			redirect(base_url('bussiness/packages/bought_new_package'));
 		}
 
 		$data['title'] = trans('order_confirmation');

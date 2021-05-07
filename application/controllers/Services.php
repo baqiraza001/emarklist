@@ -59,7 +59,7 @@ class Services extends Main_Controller {
 				$company_slug=make_slug($this->input->post('bussiness_name'));
 				$company_id=get_company_id($company_slug);
 				if (!empty($company_id)) {
-				$search['company_id']=$company_id;
+					$search['company_id']=$company_id;
 				}
 			}
 			// if(!empty($this->input->post('bussiness_name'))){
@@ -68,7 +68,7 @@ class Services extends Main_Controller {
 			// 		$search['company_id']=$company_id;
 			// 	}
 			// }
-				
+
 				//echo get_company_id($this->input->post('bussiness_name'));
 				//$search['title'] = make_slug($this->input->post('job_title'));
 			// search by services
@@ -278,12 +278,12 @@ class Services extends Main_Controller {
 
 		// social media sharing 	
 		$data['show_og_tags'] = true;
-        $data['og_title'] = $data['job_detail']['title'];
-        $description_text = trim(html_escape(strip_tags($data['job_detail']['description'])));
-        $data['og_description'] = text_limit($description_text, 200);
-        $data['og_type'] = "Job";
-        $data['og_url'] = base_url('jobs/'.$data['job_detail']['id'].'/'.$data['job_detail']['job_slug']);
-        $data['og_image'] = $this->general_settings['logo'];	
+		$data['og_title'] = $data['job_detail']['title'];
+		$description_text = trim(html_escape(strip_tags($data['job_detail']['description'])));
+		$data['og_description'] = text_limit($description_text, 200);
+		$data['og_type'] = "Job";
+		$data['og_url'] = base_url('jobs/'.$data['job_detail']['id'].'/'.$data['job_detail']['job_slug']);
+		$data['og_image'] = $this->general_settings['logo'];	
 
 		$data['title'] = $data['job_detail']['title'];
 		$data['meta_description'] = text_limit($description_text, 150);
@@ -307,7 +307,7 @@ class Services extends Main_Controller {
 			$this->form_validation->set_rules('job_actual_link', 'job_actual_link', 'trim|required');
 
 			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">
-                          <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>', '</div>');
+				<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>', '</div>');
 			if ($this->form_validation->run() === FALSE) {
 				$data = array(
 					'errors' => validation_errors()
@@ -322,32 +322,32 @@ class Services extends Main_Controller {
 			$emp_id = $this->input->post('emp_id');
 			$username = $this->input->post('username');
 			$email = $this->input->post('email');
-		    $job_title = $this->input->post('job_title');
-		    $cover_letter = $this->input->post('cover_letter');
-		    $job_actual_link = $this->input->post('job_actual_link');
+			$job_title = $this->input->post('job_title');
+			$cover_letter = $this->input->post('cover_letter');
+			$job_actual_link = $this->input->post('job_actual_link');
 
 			//insert job applicant to the "xx_applied_job" table
 			$result = $this->Service_Model->insert_job_application($user_id, $emp_id, $job_id, $cover_letter); 
 
 			if($result){
-			    $emp = get_emp_by_id($emp_id);
-			    $job = get_job_detail($job_id);
-			    
-			    $emp_to = $emp['email'];
-			    
-			    $user_to = get_user_email($user_id);
-			    
+				$emp = get_emp_by_id($emp_id);
+				$job = get_job_detail($job_id);
+
+				$emp_to = $emp['email'];
+
+				$user_to = get_user_email($user_id);
+
 			    // send email to employer
-			    $mail_data = array(
-			    'job_title' => $job['title']
-			    );
-			    
+				$mail_data = array(
+					'job_title' => $job['title']
+				);
+
 			    // Job Seeker
-			    $this->mailer->mail_template($user_to,'job-applied',$mail_data);
-			    
+				$this->mailer->mail_template($user_to,'job-applied',$mail_data);
+
 			    //Employer Alert
-			    $this->mailer->mail_template($emp_to,'applicant-applied',$mail_data);
-			    
+				$this->mailer->mail_template($emp_to,'applicant-applied',$mail_data);
+
 				$this->session->set_flashdata('applied_success', trans('job_application_sent_msg'));
 				redirect($job_actual_link);
 			}
@@ -371,6 +371,7 @@ class Services extends Main_Controller {
 	public function add_appointment()
 	{
 		$this->load->model('bussiness/staff_model');
+		$this->load->model('job_model');
 
 		$service_id=$this->input->post('service_id');
 		$staff=$this->input->post('staff');
@@ -379,6 +380,7 @@ class Services extends Main_Controller {
 			'user_id'=>$this->session->userdata('user_id'),
 			'staff_id' =>$staff,
 			'slot'	=> $appointment,
+			'date_created'	=> date('Y-m-d H:i:s'),
 		);
 		//$check=$this->db->query("SELECT * FROM xx_book_service WHERE staff_id='".$staff."' AND slot='".$slot."' ")->result_array();
 		$where_arr = array('staff_id' => $staff, 'slot' => $appointment);
@@ -392,14 +394,13 @@ class Services extends Main_Controller {
 			
 		}
 		else{
-		$this->common_model->safe_insert('xx_book_service',$data,false);
-		$company = $this->Service_Model->get_job_by_id($service_id)[0];
-		$company_slug = $this->company_model->get_company_detail($company['company_id'][0]);
-		$this->session->set_flashdata('add_service', "Your service is reserved.");
-		redirect('Company/detail1/'.$company_slug['company_slug'], ''); 	
+			$this->common_model->safe_insert('xx_book_service',$data,false);
+			$company = $this->job_model->get_job_by_id($service_id);
+			$company_slug = $this->company_model->get_company_detail($company['company_id'][0]);
+			$this->session->set_flashdata('add_service', "Your service is reserved.");
+			redirect('Company/detail1/'.$company_slug['company_slug'], ''); 	
 		}
 
-// 
 	}
 
 }// endClass

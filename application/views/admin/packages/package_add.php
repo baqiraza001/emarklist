@@ -10,185 +10,214 @@
 
     <div class="col-md-12">
 
-        <?php if(isset($msg) || validation_errors() !== ''): ?>
+      <?php if(isset($msg) || validation_errors() !== ''): ?>
 
-              <div class="alert alert-warning alert-dismissible">
+      <div class="alert alert-warning alert-dismissible">
 
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 
-                  <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+        <h4><i class="icon fa fa-warning"></i> Alert!</h4>
 
-                  <?= validation_errors();?>
+        <?= validation_errors();?>
 
-                  <?= isset($msg)? $msg: ''; ?>
+        <?= isset($msg)? $msg: ''; ?>
 
-              </div>
+      </div>
 
-        <?php endif; ?>
+    <?php endif; ?>
+
+  </div>
+
+</div>
+
+
+
+
+
+<div class="row">
+
+  <div class="col-md-12">
+
+    <div class="box box-body">
+
+      <div class="col-md-6">
+
+        <h4><i class="fa fa-plus"></i> &nbsp; Add New Package</h4>
+
+      </div>
+
+      <div class="col-md-6 text-right">
+
+        <a href="<?= base_url('admin/packages'); ?>" class="btn btn-success"><i class="fa fa-list"></i> Package List</a>
+
+      </div>
+
+
 
     </div>
 
   </div>
 
-  
+</div>  
 
 
 
-  <div class="row">
+<div class="row">
 
-    <div class="col-md-12">
+  <?php echo form_open( base_url('admin/packages/add')); ?>
 
-      <div class="box box-body">
+  <div class="col-md-12">
 
-        <div class="col-md-6">
+    <div class="box">
 
-          <h4><i class="fa fa-plus"></i> &nbsp; Add New Package</h4>
+      <div class="box-header with-border">
 
-        </div>
-
-        <div class="col-md-6 text-right">
-
-          <a href="<?= base_url('admin/packages'); ?>" class="btn btn-success"><i class="fa fa-list"></i> Package List</a>
-
-        </div>
-
-        
+        <h3 class="box-title">Package Detail</h3>
 
       </div>
 
-    </div>
+      <!-- /.box-header -->
 
-  </div>  
+      <!-- form start -->
+
+      <div class="box-body my-form-body">
 
 
 
-  <div class="row">
+        <div class="form-group">
 
-    <?php echo form_open( base_url('admin/packages/add')); ?>
+          <label for="title" class="control-label">Package Title</label>
 
-    <div class="col-md-12">
-
-      <div class="box">
-
-        <div class="box-header with-border">
-
-          <h3 class="box-title">Package Detail</h3>
+          <input type="text" name="title" class="form-control" id="title" value="" placeholder="eg. basic, premium" required>
 
         </div>
 
-        <!-- /.box-header -->
-
-        <!-- form start -->
-
-        <div class="box-body my-form-body">
 
 
+        <div class="form-group">
 
-            <div class="form-group">
+          <label for="days" class="control-label">Price</label>
 
-              <label for="title" class="control-label">Package Title</label>
+          <input type="price" name="price" class="form-control" id="" value="" placeholder="" required>
 
-              <input type="text" name="title" class="form-control" id="title" value="" placeholder="eg. basic, premium" required>
-
-            </div>
-
-            
-
-            <div class="form-group">
-
-              <label for="days" class="control-label">Price</label>
-
-              <input type="price" name="price" class="form-control" id="" value="" placeholder="" required>
-
-            </div>
+        </div>
 
 
 
-            <div class="form-group">
+        <div class="form-group">
 
-              <label for="days" class="control-label">No of Days</label>
+          <label for="days" class="control-label">No of Days</label>
 
-              <input type="number" name="no_of_days" class="form-control" id="" value="" placeholder="" required>
+          <input type="number" name="no_of_days" class="form-control" id="" value="" placeholder="" required>
 
-            </div>
-
-
-
-            <div class="form-group">
-
-              <label for="posts" class="control-label">No of Posts</label>
-
-              <input type="number" name="no_of_posts" class="form-control" id="" value="" placeholder="" required>
-
-            </div>
+        </div>
 
 
 
-            <div class="form-group">
+        <div class="form-group">
 
-              <label for="posts" class="control-label">Package Detail</label>
+          <label for="posts" class="control-label">No of Posts</label>
 
-              <input type="text" name="detail" class="form-control" id="" value="" placeholder="" required>
+          <input type="number" name="no_of_posts" class="form-control" id="" value="" placeholder="" required>
 
-            </div>
+        </div>
+        <div class="bussiness_options" style="display: none;">
+          <div class="form-group">
 
-            <div class="form-group">
-
-              <label for="posts" class="control-label">Sort Order</label>
-
-              <input type="number" name="sort_order" class="form-control" id="" value="" placeholder="">
-
-            </div>
-
-
-
-            <div class="form-group">
-
-              <label for="package_for" class="control-label">Package For</label>
-
-              <select name="package_for" class="form-control">
-
-                <option value="1">Employer</option>
-
-              </select>
-
-            </div>
-
-
+            <label for="no_of_service_posts" class="control-label">No of Service Posts</label>
+            <input type="number" name="no_of_service_posts" class="form-control" id="" value="" placeholder="" >
 
           </div>
+          <div class="form-group">
 
-          <!-- /.box-body -->
+            <label for="no_of_products_posts" class="control-label">No of Products Posts</label>
 
-      </div>
+            <input type="number" name="no_of_products_posts" class="form-control" id="" value="" placeholder="" >
 
-    </div>
+          </div>
+          <div class="form-group">
+
+            <label for="no_of_daily_deals_posts" class="control-label">No of Daily Deals Posts</label>
+
+            <input type="number" name="no_of_daily_deals_posts" class="form-control" id="" value="" placeholder="" >
+
+          </div>
+          <div class="form-group">
+
+            <label for="no_of_staff" class="control-label">No of Staff</label>
+
+            <input type="number" name="no_of_staff" class="form-control" id="" value="" placeholder="" >
+
+          </div>
+        </div>
 
 
+        <div class="form-group">
 
-    <div class="col-md-12">
+          <label for="posts" class="control-label">Package Detail</label>
 
-      <div class="box">
-
-        <div class="box-body">
-
-          <input type="submit" name="submit" value="Add Package" class="btn btn-primary pull-right">
+          <input type="text" name="detail" class="form-control" id="" value="" placeholder="" required>
 
         </div>
 
+        <div class="form-group">
+
+          <label for="posts" class="control-label">Sort Order</label>
+
+          <input type="number" name="sort_order" class="form-control" id="" value="" placeholder="">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+          <label for="package_for" class="control-label">Package For</label>
+
+          <select name="package_for" id="package_for" class="form-control">
+
+            <option value="1">Employer</option>
+            <option value="0">Bussiness</option>
+
+          </select>
+
+        </div>
+
+
+
       </div>
 
+      <!-- /.box-body -->
+
     </div>
-
-
 
   </div>
 
 
 
+  <div class="col-md-12">
+
+    <div class="box">
+
+      <div class="box-body">
+
+        <input type="submit" name="submit" value="Add Package" class="btn btn-primary pull-right">
+
+      </div>
+
+    </div>
+
+  </div>
 
 
-    <?php echo form_close(); ?>
+
+</div>
+
+
+
+
+
+<?php echo form_close(); ?>
 
 
 
@@ -200,12 +229,22 @@
 
 
 
-  <script>
+<script>
 
-    $('#packages').addClass('active');
+  $('#packages').addClass('active');
+  $('#package_for').change(function() {
+    let value = $(this).val();
+    if(value == 0)
+    {
+      $('.bussiness_options').find('input').attr('required', true);
+      $('.bussiness_options').show();
+    }
+    else
+      $('.bussiness_options').hide();
 
-  </script>
+  });
+
+</script>
 
 
 
- 

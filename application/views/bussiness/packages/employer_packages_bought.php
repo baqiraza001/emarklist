@@ -26,10 +26,10 @@
 					<h3><?=trans('your_packages')?></h3>
 				</div>
 				<?php if(empty($package_detail)): ?>
-                  <p class="text-gray"><strong><?=trans('sorry')?>,</strong> <?=trans('no_package_msg')?></p>
-                <?php endif; ?>
+					<p class="text-gray"><strong><?=trans('sorry')?>,</strong> <?=trans('no_package_msg')?></p>
+				<?php endif; ?>
 
-					<div class="row pt-4 text-center d-flex " style="justify-content: space-evenly;">
+				<div class="row pt-4 text-center d-flex " style="justify-content: space-evenly;">
 					<?php foreach($package_detail as $package): 
 						if ($package['is_active']==1) {
 
@@ -38,12 +38,16 @@
 								<div class="card mb-4 box-shadow card-columns">
 									<div class="card-header" style="background-color: #f9f9ff">
 										<h2 class="my-0 font-weight-bold" style="font-size: 23px;"><?= $package['title'] ?></h2>
-										<h4 class="my-0 font-weight-normal mt-3">(<?= $package['no_of_posts'] ?> Posts)</h4>
+										<h4 class="my-0 font-weight-normal mt-3">(<?= $package['no_of_posts'] ?> Job Posts)</h4>
 										<h4 class="my-0 font-weight-normal mt-3 mb-3" style="font-size: 17px;">Package Duration (<?= $package['no_of_days'] ?> Days)</h4>
 									</div>
 									<div class="card-body">
-										<p class="pt-3"><?=trans('bought_date')?> : <?= date_time($package['buy_date']) ?></p>
-									<p class="pt-3"><?=trans('expiry_date')?> : <?= date_time($package['expire_date']) ?></p>
+										<p class="">No. of Service Posts : <?= $package['no_of_service_posts'] ?></p>
+										<p class="">No. of Products Posts : <?= $package['no_of_products_posts'] ?></p>
+										<p class="">No. of Daily Deals Posts : <?= $package['no_of_daily_deals_posts'] ?></p>
+										<p class="">No. of Staff : <?= $package['no_of_staff'] ?></p>
+										<p class=""><?=trans('bought_date')?> : <?= date_time($package['buy_date']) ?></p>
+										<p class=""><?=trans('expiry_date')?> : <?= date_time($package['expire_date']) ?></p>
 									</div>
 									<div class="card border-0">
 										<div class="card-body text-center">

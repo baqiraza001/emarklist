@@ -33,28 +33,28 @@ class Job extends MY_Controller
 	public function datatable_json()
 	{				   				   
 		$records = $this->job_model->GetAll();
-        $data = array();
+		$data = array();
 
-        $i= 1;
-        foreach ($records['data']  as $row) 
+		$i= 1;
+		foreach ($records['data']  as $row) 
 		{
-			$buttoncontroll = '<a class="btn btn-xs btn-success" href='.base_url("admin/job/edit/".$row['id']).' title="View" > 
-				 <i class="fa fa-eye"></i></a>&nbsp;&nbsp;
+			$buttoncontroll = '<a class="btn btn-xs btn-success" href='.base_url("admin/job/active/".$row['id']).' title="Make this job active" > 
+			<i class="fa fa-pencil-square"></i></a>&nbsp;&nbsp;
 
-				  <a class="edit btn btn-xs btn-primary" href='.base_url("admin/job/edit/".$row['id']).' title="Edit" > 
-				 <i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+			<a class="edit btn btn-xs btn-primary" href='.base_url("admin/job/edit/".$row['id']).' title="Edit" > 
+			<i class="fa fa-edit"></i></a>&nbsp;&nbsp;
 
-				 <a class="btn-delete btn btn-xs btn-danger" href='.base_url("admin/job/del/".$row['id']).' title="Delete" onclick="return confirm(\'Do you want to delete ?\')"> 
-				 <i class="fa fa-trash-o"></i></a>';
+			<a class="btn-delete btn btn-xs btn-danger" href='.base_url("admin/job/del/".$row['id']).' title="Delete" onclick="return confirm(\'Do you want to delete ?\')"> 
+			<i class="fa fa-trash-o"></i></a>';
 			
 			$data[]= array(
 				$i++,
 				$row['title'],
 				'<a class="edit btn btn-xs btn-info mb-3" href='.base_url("admin/applicants/view/".$row['id']).' title="Applicants" > 
-				 Applied [ '.$row['cand_applied'].' ]
+				Applied [ '.$row['cand_applied'].' ]
 				</a>
 				<a class="edit btn btn-xs btn-info" href='.base_url("admin/applicants/shortlisted/".$row['id']).' title="Applicants" > 
-				 Shortlisted [ '.$row['total_shortlisted'].' ]
+				Shortlisted [ '.$row['total_shortlisted'].' ]
 				</a>',
 				get_industry_name($row['industry']),  //  helper function
 				get_country_name($row['country']), // same as above
@@ -62,9 +62,9 @@ class Job extends MY_Controller
 				$row['is_status'],
 				$buttoncontroll
 			);
-        }
+		}
 		$records['data'] = $data;
-        echo json_encode($records);						   
+		echo json_encode($records);						   
 	}
 
 	//--------------------------------------------------
@@ -292,10 +292,10 @@ class Job extends MY_Controller
 		$file = '';
 		
 		$check = sendEmail($to, $subject, $body, $file, $cc);
-					  
-		  if( $check ){
-			  echo 'success';
-		  }
+
+		if( $check ){
+			echo 'success';
+		}
 	}
 	
 	//--------------------------------------------------
@@ -316,10 +316,10 @@ class Job extends MY_Controller
 		$file = '';
 		
 		$check = sendEmail($to, $subject, $body, $file, $cc);
-					  
-		  if( $check ){
-			  echo 'success';
-		  }
+
+		if( $check ){
+			echo 'success';
+		}
 		
 	}
 
@@ -333,6 +333,26 @@ class Job extends MY_Controller
 		$final_job_url = $job_title_slug;
 		return $final_job_url;
 	}
+
+	// Edit Job
+	public function active($job_id=0)
+	{		
+		$admin_id = $this->session->userdata('admin_id');
+
+		if(!isset($admin_id))
+			redirect('admin/auth/login');
+
+		$data = array(
+			'is_status' => 'active',
+		);
+		$result = $this->job_model->edit_status($data,$job_id);
+
+		$this->session->set_flashdata('success','Job status updated successfully');
+		redirect(base_url('admin/job'));
+
+	}
+
+
 }	
 
 ?>

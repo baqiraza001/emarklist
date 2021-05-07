@@ -68,10 +68,6 @@ class Deals extends Main_Controller {
 		
 		$this->form_validation->set_rules('deal_title','job title','trim|required|min_length[3]');
 		$this->form_validation->set_rules('deal_type','Service type','trim|required');
-		$this->form_validation->set_rules('price','Price','trim|required');
-		$this->form_validation->set_rules('duration','Duration','trim|required');
-		$this->form_validation->set_rules('shift_start','Shift start','trim|required');
-		$this->form_validation->set_rules('shift_end','Shift end','trim|required');
 		$this->form_validation->set_rules('deal_description','description','trim|required|min_length[3]');
 
 		$deal_record = $this->deals_model->get_record($deal_id);

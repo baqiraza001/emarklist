@@ -7,7 +7,7 @@ class Jobs extends Main_Controller {
 	{
 		parent::__construct();
 		$this->load->library('upload');
-		$this->per_page_record = 14;
+		$this->per_page_record = 10;
 		$this->load->model('job_model'); // load job model
 		$this->load->model('bussiness/staff_model', 'staff_model'); // load job model
 	}
@@ -289,7 +289,7 @@ class Jobs extends Main_Controller {
 
 	//--------------------------------------------------------------
 	// search job by industry
-	public function industry($title)
+	public function industry($title = '')
 	{
 		$search['industry'] = get_industry_id($title); // get industry id by title
 

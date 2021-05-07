@@ -183,6 +183,7 @@ $lang['add_staff']                                = "Add Staff";
 //My Packages
 $lang['your_packages']                                  = "Your Packages";
 $lang['no_package_msg']                                 = "you don't have any Active package Yet. Please visit the pricing link on Navbar Menu!";
+$lang['no_package_found_msg']                                 = "No active packages found";
 $lang['num_of_posts']                                   = "Total No. of Posts";
 $lang['num_of_days']                                    = "Total No. of Days";
 $lang['bought_date']                                    = "Bought Date";
@@ -282,7 +283,7 @@ $lang['problem_sending_email']                            = "There is a problem 
 $lang['select_format_msg']                                = "Error! Please select a valid file format";
 $lang['company_info_updated_msg']                         = "Company Info has been updated successfully";
 $lang['best_pricing_msg']                                 = "Click the link below to choose the best pricing for your site";
-$lang['job_limit_expired_msg']                            = "Your Free Job Posting Limit Has Been Expired. Please renew your package";
+$lang['job_limit_expired_msg']                            = "Your Job Posting Limit Has Been Expired. Please renew your package";
 $lang['feature_job_expired_msg']                          = "Your Featured Job Posting Limit Has Been Expired. Please renew your package";
 $lang['job_posted_success']                               = "Congratulation! Job has been Posted successfully";
 $lang['job_updated_success']                              = "Updated successfully";

@@ -21,7 +21,6 @@
 
 			<div class="col-lg-12 post-list">
 				<?php if(empty($applicants)): ?>
-				    				?>
                   <p class="alert alert-danger"><strong><?=trans('sorry')?>,</strong> <?=trans('no_applicant')?></p>
                 <?php endif; ?>
 				<?php foreach($applicants as $applicant): ?>

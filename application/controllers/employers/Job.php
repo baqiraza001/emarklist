@@ -111,7 +111,8 @@ class Job extends Main_Controller {
 					'location' => $this->input->post('location'),
 					'expiry_date' => $this->input->post('expiry_date'),
 					'created_date' => date('Y-m-d : h:m:s'),
-					'updated_date' => date('Y-m-d : h:m:s')
+					'updated_date' => date('Y-m-d : h:m:s'),
+					'posting_type' => 1
 				);
 				$data['job_slug'] = $this->make_job_slug($this->input->post('job_title'), $this->input->post('city'));
 

@@ -36,12 +36,16 @@
 						<p class="card-text">
 							<?=trans('no_of_posts')?>: <?= $package_detail['no_of_posts'] ?>
 						</p>
+						<p class="card-text">No. of Service Posts : <?= $package_detail['no_of_service_posts'] ?></p>
+						<p class="card-text">No. of Products Posts : <?= $package_detail['no_of_products_posts'] ?></p>
+						<p class="card-text">No. of Daily Deals Posts : <?= $package_detail['no_of_daily_deals_posts'] ?></p>
+						<p class="card-text">No. of Staff : <?= $package_detail['no_of_staff'] ?></p>
 						<p class="card-text">
 							<?=trans('no_of_days')?>: <?= $package_detail['no_of_days'] ?>
 						</p>
 
 						<p class="card-text">Details:
-							 <?= $package_detail['detail'] ?>
+							<?= $package_detail['detail'] ?>
 						</p>
 
 						<p><h4>Total Due: &nbsp;<?= $this->general_settings['currency']; ?> <?=$package_detail['price']?></h4></p>
@@ -105,11 +109,11 @@
 								<div class="input-group">
 									<input type="text" name="card-number" id="card-number" autocomplete="off" placeholder="Your card number" class="form-control" required>
 									<div class="input-group-append">
-                    <span class="input-group-text text-muted">
-                                                <i class="fa fa-cc-visa mx-1"></i>
-                                                <i class="fa fa-cc-amex mx-1"></i>
-                                                <i class="fa fa-cc-mastercard mx-1"></i>
-                                            </span>
+										<span class="input-group-text text-muted">
+											<i class="fa fa-cc-visa mx-1"></i>
+											<i class="fa fa-cc-amex mx-1"></i>
+											<i class="fa fa-cc-mastercard mx-1"></i>
+										</span>
 									</div>
 								</div>
 							</div>

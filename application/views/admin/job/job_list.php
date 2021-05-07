@@ -102,6 +102,7 @@
 	var table =	$('.mv_datatable').DataTable( {
 			"processing": true,
 			"serverSide": true,
+      "scrollX": true,
 			"pageLength": 25,
 			"ajax": "<?=base_url('admin/job/datatable_json')?>",
 			"order": [[5,'desc']],

@@ -26,7 +26,6 @@ class Job extends Main_Controller {
 	{
 		$pkg = $this->package_model->get_active_package();
 		$pkg_id = $pkg['package_id'];
-
 		if(empty($pkg['package_id'])){
 			$this->session->set_flashdata('expire',trans('best_pricing_msg'));
 			redirect(base_url('bussiness/job/expire'));
@@ -35,6 +34,7 @@ class Job extends Main_Controller {
 
 		// free job post 
 		$total_free_jobs = $this->job_model->count_posted_jobs($pkg_id, 0, $pkg['payment_id']);
+		
 		if($total_free_jobs >= $pkg['no_of_posts']){
 			$this->session->set_flashdata('expire',trans('job_limit_expired_msg'));
 			redirect(base_url('bussiness/job/expire'));

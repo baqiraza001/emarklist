@@ -7,7 +7,7 @@
         <h1 class="text-white">
           <?= $title; ?>
         </h1> 
-        <p class="text-white link-nav"><a href="index.html"><?=trans('label_home')?> </a>  <span class="lnr lnr-arrow-right"></span>  <a href=""> <?= $title; ?> </a></p>
+        <p class="text-white link-nav"><a href="<?= base_url() ?>"><?=trans('label_home')?> </a>  <span class="lnr lnr-arrow-right"></span>  <a href=""> <?= $title; ?> </a></p>
       </div>                      
     </div>
   </div>
@@ -28,41 +28,46 @@
            <div class="col-md-8 col-sm-8">
             <h3><?= $title; ?></h3>
           </div>
-      </div>  
-    </div>
-    <div class="profile_job_detail">
-      <div class="row">
-        <?php if(empty($applicants)): ?>
-          <p class="text-gray"><strong><?=trans('sorry')?>,</strong> <?=trans('no_shortlisted')?></p>
-        <?php endif; ?>
-        <?php foreach($applicants as $applicant): ?>
-         <div class="col-md-6 col-sm-12 mb-20">
-          <div class="onjob-employer-resumes-wrap">
-            <figure class="pp">
-              <figcaption>
-                <h2 class="title"><a href="#"><?= $applicant['firstname']; ?> <?= $applicant['lastname']; ?></a> <a href="<?= base_url($applicant['resume']); ?>" class="onjob-resumes-download"><i class="lnr lnr-download"></i> <?=trans('download_cv')?></a></h2>
-                <span class="onjob-resumes-subtitle"><?= $applicant['job_title']; ?></span>
-                <ul>
-                  <li>
-                    <span><?=trans('location')?>:</span>
-                    <?= get_city_name($applicant['city']); ?>, <?= get_country_name($applicant['country']); ?>
+        </div>  
+      </div>
+      <div class="profile_job_detail">
+        <div class="row">
+          <?php if(empty($applicants)): ?>
+            <p class="text-gray"><strong><?=trans('sorry')?>,</strong> <?=trans('no_shortlisted')?></p>
+          <?php endif; ?>
+          <?php foreach($applicants as $applicant): ?>
+           <div class="col-md-6 col-sm-12 mb-20">
+            <div class="onjob-employer-resumes-wrap">
+              <figure class="pp">
+                <figcaption>
+                  <h2 class="title"><a href="#"><?= $applicant['firstname']; ?> <?= $applicant['lastname']; ?></a> 
+                    <?php if(!empty($is_free_package) && isset($is_free_package)) { ?>
+                      <a href="<?= base_url($applicant['resume']); ?>" class="onjob-resumes-download"><i class="lnr lnr-download"></i> <?=trans('download_cv')?></a></h2>
+                    <?php } ?>
+                    <span class="onjob-resumes-subtitle"><?= $applicant['job_title']; ?></span>
+                    <ul>
+                      <li>
+                        <span><?=trans('location')?>:</span>
+                        <?= get_city_name($applicant['city']); ?>, <?= get_country_name($applicant['country']); ?>
+                      </li>
+                      <li>
+                        <span><?=trans('cur_salary')?>:</span>
+                        <?= $this->general_settings['currency']; ?> <?= $applicant['current_salary']; ?>/<small><?=trans('pa_minimum')?></small>
+                      </li>
+                    </ul>
+                  </figcaption>
+                </figure>
+                <ul class="onjob-resumes-options">
+                  <li><a href="javascript:void(0)" class="get_shortlisted_user_profile" data-user="<?= $applicant['seeker_id']; ?>"><i class="lnr lnr-user"></i> <?=trans('user_profile')?></a></li>
+                  <?php if(!empty($is_free_package) && isset($is_free_package)) { ?>
+                    <li><a href="#" data-toggle="modal" data-target="#emailModal" data-whatever="<?= $applicant['email']; ?>"><i class="lnr lnr-envelope"></i> <?=trans('interview')?></a>
+                    <?php } ?>
                   </li>
-                  <li>
-                    <span><?=trans('cur_salary')?>:</span>
-                    <?= $this->general_settings['currency']; ?> <?= $applicant['current_salary']; ?>/<small><?=trans('pa_minimum')?></small>
-                  </li>
-                </ul>
-              </figcaption>
-            </figure>
-            <ul class="onjob-resumes-options">
-              <li><a href="javascript:void(0)" class="get_shortlisted_user_profile" data-user="<?= $applicant['seeker_id']; ?>"><i class="lnr lnr-user"></i> <?=trans('user_profile')?></a></li>
-              <li><a href="#" data-toggle="modal" data-target="#emailModal" data-whatever="<?= $applicant['email']; ?>"><i class="lnr lnr-envelope"></i> <?=trans('interview')?></a>
-              </li>
           <!--     <li>
                 <button id="Meeting" class="input-btn input-btn-large font-style">Meeting</button>
               </li>
-           -->  
-            </ul>
+            -->  
+          </ul>
 <!--             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
               <script>
                // $(document).ready(function(){
@@ -95,18 +100,18 @@ $.ajax(settings).done(function (response) {
 });
                   });
               });
-              </script> -->
+            </script> -->
 
           </div>
         </div>
       <?php endforeach; ?>
     </div>
     <div class="row">
-       <div class="col-12">
-          <div class="pull-right"><?php echo $this->pagination->create_links(); ?></div>
-      </div>
+     <div class="col-12">
+      <div class="pull-right"><?php echo $this->pagination->create_links(); ?></div>
     </div>
   </div>
+</div>
 </div>                          
 
 </div>
@@ -127,7 +132,7 @@ $.ajax(settings).done(function (response) {
         </button>
       </div>
       <div class="modal-body">
-      <?php echo form_open('/','class="email-form"'); ?>
+        <?php echo form_open('/','class="email-form"'); ?>
         <input type="hidden" name="email" class="form-control" id="email">
         <div class="form-group">
           <label for="recipient-name" class="col-form-label"><?=trans('subject')?>:</label>
@@ -165,7 +170,7 @@ $.ajax(settings).done(function (response) {
       </div>
       <div class="modal-body shortlisted-profile-modal-body">
       </div>
-     
-   </div>
- </div>
+
+    </div>
+  </div>
 </div>

@@ -51,7 +51,7 @@ $(document).ready(function(){
         <nav id="nav-menu-container">
           <ul class="nav-menu">
             <?php if ($this->session->userdata('is_user_login')): ?>
-              <li class="menu-has-children bi bi-caret-down"><a href=""><?=trans('label_jobs')?></a>
+              <li class="menu-has-children bi bi-caret-down"><a href=""><?=trans('label_for_virtual_jobs')?></a>
                 <ul>
                   <li><a href="<?= base_url('jobs-by-category'); ?>"><?=trans('label_jobs_by_cat')?></a></li>
                   <li><a href="<?= base_url('jobs-by-industry'); ?>"><?=trans('label_jobs_by_industry')?></a></li>
@@ -61,7 +61,6 @@ $(document).ready(function(){
               </li>
 
               <li class=""><a href="<?= base_url('company'); ?>"><?=trans('label_companies')?></a></li>
-              <li class=""><a href="<?= base_url('blog'); ?>"><?=trans('label_blog')?></a></li>
 
 <!--               <li><a href="<?= base_url('employers') ?>"><?=trans('label_for_employers')?></a>
               <li><a href="<?= base_url('bussiness') ?>"><?=trans('label_for_listings')?></a>
@@ -174,7 +173,6 @@ $(document).ready(function(){
 
           <?php elseif ($this->uri->segment(1) == 'employers'): ?>   
             <li class=""><a href="<?= base_url('employers'); ?>"><?=trans('label_home')?></a></li>
-            <li class=""><a href="<?= base_url('blog'); ?>"><?=trans('label_blog')?></a></li>
             <li class=""><a href="<?= base_url('employers/job/post'); ?>"><?=trans('label_post_job')?></a></li>
             <li><a class="ticker-btn-nav btn_login mt-1" href="<?= base_url('employers/auth/login') ?>"><i class="lnr lnr-user pr-1"></i> Login</a></li>
             <li><a class="nav_btn mt-1" href="<?= base_url() ?>"><?=trans('label_for_jobseeker')?></a> </li>

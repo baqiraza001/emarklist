@@ -42,9 +42,6 @@
 				          <th>Title</th>
 				          <th>Type</th>
 				          <th>Category</th>
-				          <th>Duration</th>
-				          <th>Shift Start - End</th>
-				          <th>Price </th>
 				          <th>Expiry Date</th>
 				          <th>Status</th>
 				          <th>Date Created</th>
@@ -59,9 +56,6 @@
 				        	<td><?= $deal['title'] ?></td>
 					        <td><?= $deal['service_name'] ?></td>
 					        <td><?= $deal['category_name'] ?></td>
-					        <td><?= $deal['duration'] ?></td>
-					        <td><?= $deal['shift_start'] ?> - <?= $deal['shift_end'] ?></td>
-					        <td><?= $deal['price'] ?></td>
 					        <td><?= date('d F, Y', strtotime($deal['expiry_date'])) ?></td>
 					        <td><span class="badge badge-info badge-pill status-div"><?= $deal['is_status'] ?></span></td>
 					        <td><?= date('d F, Y', strtotime($deal['created_date'])) ?></td>

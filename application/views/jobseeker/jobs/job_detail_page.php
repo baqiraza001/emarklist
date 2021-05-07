@@ -304,7 +304,7 @@ if ($job_detail['posting_type']== '1') {
 		 							</div>
 		 							<ul class="btns">
 		 								<!-- 								<li><a id="btn-apply" data-toggle="collapse" href="#collapseExample" role="button">Book Service</a> -->
-		 									<a href="#" data-toggle="modal" data-target="#emailModal" data-whatever=""><i class="lnr lnr-envelope"></i>Book Service</a>
+		 									<a href="#" data-toggle="modal" data-target="#emailModal" data-whatever=""><i class="lnr lnr-envelope"></i> Book Service</a>
 		 								</li>
 
 		 							</ul>
@@ -314,7 +314,7 @@ if ($job_detail['posting_type']== '1') {
 		 								<div class="modal-dialog modal-dialog-centered" role="document">
 		 									<div class="modal-content">
 		 										<div class="modal-header">
-		 											<h5 class="modal-title" id="exampleModalLabel"><?=trans('new_message')?></h5>
+		 											<h5 class="" id="exampleModalLabel">New Appointment</h5>
 		 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		 												<span aria-hidden="true">&times;</span>
 		 											</button>
@@ -323,72 +323,68 @@ if ($job_detail['posting_type']== '1') {
 		 											<?php $attributes = array('id' => 'appointment', 'method' => 'post');
 		 											echo form_open('services/add_appointment',$attributes); ?>
 		 											<input type="hidden" name="service_id" class="form-control" id="service_id" value="<?php echo $job_detail['id']; ?>">
-        <!-- <div class="form-group">
-          <label for="recipient-name" class="col-form-label"><?=trans('subject')?>:</label>
-          <input type="text" name="subject" class="form-control" id="subject">
-        </div> -->
-        
-        <div class="form-group">
-        	<label for="message-text" class="col-form-label">Select staff member :</label>
 
-        	<select name="staff" id="staff" class="form-control staff">
-        		<option value="">Select staff</option>
-        		<?php foreach($staff_data as $staff):?>
-        			<option value="<?= $staff->id ?>"><?php echo "$staff->name | $staff->service_name | $staff->category_name" ?></option>
-        		<?php endforeach; ?>
-        	</select>
+		 											<div class="form-group">
+		 												<label for="message-text" class="col-form-label">Select staff member :</label>
 
-        </div>
-        
-        <div class="form-group">
-        	<label for="appt-time">Choose Appointment Time</label>
-        	<select class="form-control" id="appointment_time" name="appointment_time">
-        		<option value="">Choose Appointment Time</option>
-        	</select>
-        	<span class="validity"></span>
-        </div>
+		 												<select name="staff" id="staff" class="form-control staff">
+		 													<option value="">Select staff</option>
+		 													<?php foreach($staff_data as $staff):?>
+		 														<option value="<?= $staff->id ?>"><?php echo "$staff->name | $staff->service_name | $staff->category_name" ?></option>
+		 													<?php endforeach; ?>
+		 												</select>
 
-        <div class="form-group">
-        	<button type="button" class="btn btn-secondary" data-dismiss="modal"><?=trans('close')?></button>
-        	<input type="submit" class="btn btn-primary" name="submit" value="Confirm">
-        </div>
-        <?php form_close(); ?>
-      </div>
+		 											</div>
 
-    </div>
-  </div>
-</div>
-<!--for service booking end-->
-</div>
-<hr/>
-<p class="description">
-	<?= $job_detail['description']; ?>
-</p>
-<p class="address">
-	<strong>Price:</strong> <?= $job_detail['cost']; ?><?= $this->general_settings['currency']; ?>
-</p>
+		 											<div class="form-group">
+		 												<label for="appt-time">Choose Appointment Time</label>
+		 												<select class="form-control" id="appointment_time" name="appointment_time">
+		 													<option value="">Choose Appointment Time</option>
+		 												</select>
+		 												<span class="validity"></span>
+		 											</div>
 
-<?php
-$comp_info=$this->db->query("SELECT * FROM xx_companies WHERE id='".$job_detail['company_id']."' ")->result_array();
-foreach ($comp_info as $key) {
-	$contact_number=$key['phone_no'];
-}
-if (!empty($contact_number)) {
-	?>
-	<p class="address">
-		<strong>Contact:</strong> <?= $contact_number; ?>
-	</p>
-	<?php
-}
-?>
+		 											<div class="form-group">
+		 												<button type="button" class="btn btn-secondary" data-dismiss="modal"><?=trans('close')?></button>
+		 												<input type="submit" class="btn btn-primary" name="submit" value="Confirm">
+		 											</div>
+		 											<?php form_close(); ?>
+		 										</div>
 
-<p class="address">
-	<!-- <strong><?=trans('location')?>:</strong> <?= get_city_name($job_detail['city']); ?>, <?= get_country_name($job_detail['country']); ?> -->
-	<strong><?=trans('location')?>:</strong> <?= $job_detail['location']; ?>
-</p>
-<p class="address">
-	<strong><?=trans('posted_date')?>:</strong> <?= date('d-m-Y', strtotime($job_detail['created_date'])); ?>
-</p>
+		 									</div>
+		 								</div>
+		 							</div>
+		 							<!--for service booking end-->
+		 						</div>
+		 						<hr/>
+		 						<p class="description">
+		 							<?= $job_detail['description']; ?>
+		 						</p>
+		 						<p class="address">
+		 							<strong>Price:</strong> <?= $job_detail['cost']; ?><?= $this->general_settings['currency']; ?>
+		 						</p>
+
+		 						<?php
+		 						$comp_info=$this->db->query("SELECT * FROM xx_companies WHERE id='".$job_detail['company_id']."' ")->result_array();
+		 						foreach ($comp_info as $key) {
+		 							$contact_number=$key['phone_no'];
+		 						}
+		 						if (!empty($contact_number)) {
+		 							?>
+		 							<p class="address">
+		 								<strong>Contact:</strong> <?= $contact_number; ?>
+		 							</p>
+		 							<?php
+		 						}
+		 						?>
+
+		 						<p class="address">
+		 							<!-- <strong><?=trans('location')?>:</strong> <?= get_city_name($job_detail['city']); ?>, <?= get_country_name($job_detail['country']); ?> -->
+		 							<strong><?=trans('location')?>:</strong> <?= $job_detail['location']; ?>
+		 						</p>
+		 						<p class="address">
+		 							<strong><?=trans('posted_date')?>:</strong> <?= date('d-m-Y', strtotime($job_detail['created_date'])); ?>
+		 						</p>
 
 				<!-- 		<?php  $skills = explode("," , $job_detail['skills']);?>
 						<ul class="tags">

@@ -26,6 +26,9 @@
 			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/staff/add_staff'); ?>"><p><i class="fa fa-plus pr-2"></i> <?=trans('add_staff')?></p></a>
 		</li>
 		<li>
+			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/staff/appointment_list'); ?>"><p><i class="fa fa-list pr-2"></i> Appointments</p></a>
+		</li>
+		<li>
 			<a class="justify-content-between d-flex" href="<?= base_url('bussiness/job/post'); ?>"><p><i class="fa fa-plus pr-2"></i>  <?=trans('post_new_job')?></p></a>
 		</li>
 		<li>

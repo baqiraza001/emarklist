@@ -89,5 +89,12 @@ class Job_Model extends CI_Model
 		return $module;
 	}
 
+	public function edit_status($data,$job_id)
+	{
+		$this->db->where('id',$job_id);
+		$this->db->update('xx_job_post',$data);
+		return true;
+	}
+
 } //endClass
 ?>

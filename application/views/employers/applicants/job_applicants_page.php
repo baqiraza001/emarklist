@@ -21,9 +21,8 @@
 
 			<div class="col-lg-12 post-list">
 				<?php if(empty($applicants)): ?>
-				    				?>
-                  <p class="alert alert-danger"><strong><?=trans('sorry')?>,</strong> <?=trans('no_applicant')?></p>
-                <?php endif; ?>
+					<p class="alert alert-danger"><strong><?=trans('sorry')?>,</strong> <?=trans('no_applicant')?></p>
+				<?php endif; ?>
 				<?php foreach($applicants as $applicant): ?>
 					<div class="single-post justify-content-between d-flex flex-row">
 						<div class="thumb">
@@ -43,11 +42,12 @@
 								</ul>									
 							</div>
 						</div>
-						<div class="job-listing-btns">
-							<div class="dropdown">
-								<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<?=trans('more')?>
-								</button>
+						<?php if(!empty($is_free_package) && isset($is_free_package)) { ?>
+							<div class="job-listing-btns">
+								<div class="dropdown">
+									<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<?=trans('more')?>
+									</button>
 								<?php //$resume = ($applicant['resume'] != '')? base_url($applicant['resume']): '#'
 								if ($applicant['resume_path'] != "") {
 									$resume=$applicant['resume_path'];
@@ -56,57 +56,62 @@
 									$resume = '#';
 								}
 								else{
-								$resume=$applicant['resume'];
+									$resume=$applicant['resume'];
 								}
 								?>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								    <a class="dropdown-item" href="<?= base_url($resume); ?>"><?=trans('preview_cv')?></a>
-								    <a class="dropdown-item" href="<?= base_url($resume); ?>"><?=trans('download_cv')?></a>
-								    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#emailModal" data-whatever="<?= $applicant['email']; ?>"><?=trans('email_candidate')?></a>
-								    <div class="dropdown-divider"></div>
-								    <a class="dropdown-item" href="<?= base_url('employers/applicants/make_shortlist/'.$applicant['id'].'/'.$applicant['job_id']); ?>"><?=trans('shortlist')?></a>
+									<a class="dropdown-item" href="<?= base_url($resume); ?>"><?=trans('preview_cv')?></a>
+									<a class="dropdown-item" href="<?= base_url($resume); ?>"><?=trans('download_cv')?></a>
+									<a class="dropdown-item" href="#" data-toggle="modal" data-target="#emailModal" data-whatever="<?= $applicant['email']; ?>"><?=trans('email_candidate')?></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="<?= base_url('employers/applicants/make_shortlist/'.$applicant['id'].'/'.$applicant['job_id']); ?>"><?=trans('shortlist')?></a>
 								</div>
 							</div>
 						</div>
-					</div>
-					<?php endforeach; ?>
-					<div class="pull-right">
-				        <?php echo $this->pagination->create_links(); ?>
-				    </div>
+					<?php } else { ?>
+						<div class="job-listing-btns">
+							<a class="btn btn-info" href="<?= base_url('employers/applicants/make_shortlist/'.$applicant['id'].'/'.$applicant['job_id']); ?>"><?=trans('shortlist')?></a>
+						</div>
+					<?php } ?>
 				</div>
+			<?php endforeach; ?>
+			<div class="pull-right">
+				<?php echo $this->pagination->create_links(); ?>
 			</div>
 		</div>
-	</section>
-					
-	<!-- End applicants Area -->	
+	</div>
+</div>
+</section>
+
+<!-- End applicants Area -->	
 
 <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><?=trans('new_message')?></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <?php echo form_open("/",'class="email-form"') ?>
-          <input type="hidden" name="email" class="form-control" id="email">
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label"><?=trans('subject')?>:</label>
-            <input type="text" name="subject" class="form-control" id="subject">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label"><?=trans('message')?>:</label>
-            <textarea name="message" class="form-control" id="message"></textarea>
-          </div>
-          <div class="form-group">
-          	<button type="button" class="btn btn-secondary" data-dismiss="modal"><?=trans('close')?></button>
-        	<input type="submit" class="btn btn-primary send_email" name="submit" value="<?=trans('send_message')?>">
-          </div>
-        <?php form_close(); ?>
-      </div>
-     
-    </div>
-  </div>
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"><?=trans('new_message')?></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<?php echo form_open("/",'class="email-form"') ?>
+				<input type="hidden" name="email" class="form-control" id="email">
+				<div class="form-group">
+					<label for="recipient-name" class="col-form-label"><?=trans('subject')?>:</label>
+					<input type="text" name="subject" class="form-control" id="subject">
+				</div>
+				<div class="form-group">
+					<label for="message-text" class="col-form-label"><?=trans('message')?>:</label>
+					<textarea name="message" class="form-control" id="message"></textarea>
+				</div>
+				<div class="form-group">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"><?=trans('close')?></button>
+					<input type="submit" class="btn btn-primary send_email" name="submit" value="<?=trans('send_message')?>">
+				</div>
+				<?php form_close(); ?>
+			</div>
+
+		</div>
+	</div>
 </div>

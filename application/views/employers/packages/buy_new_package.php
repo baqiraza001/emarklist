@@ -26,7 +26,7 @@
 					<h3><?=trans('your_packages')?></h3>
 				</div>
 				<?php if(empty($package_detail)): ?>
-					<p class="text-gray"><strong><?=trans('sorry')?>,</strong> <?=trans('no_package_msg')?></p>
+					<p class="text-center alert alert-info"><strong><?=trans('sorry')?>,</strong> <?=trans('no_package_found_msg')?></p>
 				<?php endif; ?>
 				<div class="row pt-4 text-center d-flex " style="justify-content: space-evenly;">
 			<?php foreach($package_detail as $package): ?>

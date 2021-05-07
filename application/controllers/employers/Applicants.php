@@ -11,12 +11,17 @@ class Applicants extends Main_Controller {
 		$this->rbac->check_emp_authentiction();	// checking user login session
 		$this->load->model('employers/applicant_model', 'applicant_model');
 		$this->load->model('profile_model');
+		$this->load->model('employers/job_model', 'job_model');
+		$this->load->model('employers/package_model', 'package_model');
 		$this->load->library('mailer'); // load CI email library
 	}
 
 	//-----------------------------------------------------------------------------------------
 	// Applicants who have applied for the job
 	public function view($job_id){
+
+		$pkg = $this->package_model->get_active_package();
+		$pkg_id = $pkg['package_id'];
 
 		$count = $this->applicant_model->count_total_applicants($job_id);
 
@@ -28,7 +33,7 @@ class Applicants extends Main_Controller {
 		$this->pagination->initialize($config);
 
 		$data['applicants'] = $this->applicant_model->get_applicants($job_id, $this->per_page_record, $offset); // Get all applicants
-
+		$data['is_free_package'] = $pkg['payment_id'];
 		$data['title'] = trans('jobs_applicants');
 		$data['meta_description'] = 'your meta description here';
 		$data['keywords'] = 'meta tags here';
@@ -91,6 +96,9 @@ class Applicants extends Main_Controller {
 	// Shortlisted Applicant
 	public function shortlisted($job_id){
 
+		$pkg = $this->package_model->get_active_package();
+		$pkg_id = $pkg['package_id'];
+		
 		$count = $this->applicant_model->count_shortlisted_applicants($job_id);
 
 		$offset = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
@@ -105,6 +113,7 @@ class Applicants extends Main_Controller {
 		$data['title'] = trans('shortlisted_applicants');
 		$data['meta_description'] = 'your meta description here';
 		$data['keywords'] = 'meta tags here';
+		$data['is_free_package'] = $pkg['payment_id'];
 
 		$data['emp_sidebar'] = 'employers/emp_sidebar'; // load sidebar for employer
 		$data['layout'] = 'employers/applicants/shortlisted_applicants_page';
