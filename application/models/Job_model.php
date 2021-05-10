@@ -22,8 +22,30 @@ class Job_Model extends CI_Model{
 	{
 		// search URI parameters
 		unset($search['p']); //unset pagination parameter form search
-		if(!empty($search))
-			$this->db->where($search);
+
+		if(!empty($search['country']))
+			$this->db->where('country',$search['country'] );
+
+		if(!empty($search['city']))
+			$this->db->where('city',$search['city'] );
+
+		if(!empty($search['category']))
+			$this->db->where('category',$search['category'] );
+
+		if(!empty($search['industry']))
+			$this->db->where('industry',$search['industry'] );
+
+		if(!empty($search['experience']))
+			$this->db->where('experience',$search['experience'] );
+
+		if(!empty($search['job_type']))
+			$this->db->where('job_type',$search['job_type'] );
+
+		if(!empty($search['employment_type']))
+			$this->db->where('employment_type',$search['employment_type'] );
+
+		if(!empty($search['posting_type']))
+			$this->db->where('posting_type', $search['posting_type'] );
 
 		if(!empty($search['title'])){
 			$search_text = explode('-', $search['title']);
@@ -34,9 +56,6 @@ class Job_Model extends CI_Model{
 				$this->db->group_end();
 			}
 		}
-
-		if(!empty($search['posting_type']))
-			$this->db->where('posting_type', $search['posting_type'] );
 
 		$this->db->where('curdate() <  expiry_date');
 		$this->db->where('is_status', 'active');

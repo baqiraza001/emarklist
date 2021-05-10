@@ -42,11 +42,11 @@
             $cat=$this->db->query("SELECT * FROM xx_categories LIMIT 9")->result_array();
             foreach ($cat as $categories) {?>
               <div>
-               <a href="<?= base_url();?>Jobs/category/<?php echo $categories['id']; ?> " class="cat_btn_home"><?php echo $categories['name']; ?></a>
+               <a href="<?= base_url();?>search/results/category/<?php echo $categories['id']; ?>" class="cat_btn_home"><?php echo $categories['name']; ?></a>
              </div>
            <?php } ?>
            <div>
-             <a href="<?= base_url();?>Jobs/All_category/" class="cat_btn_home">All</a>
+             <a href="<?= base_url();?>search/results/" class="cat_btn_home">All</a>
            </div>
          </section>
        </div> 
