@@ -547,7 +547,76 @@ class Packages extends Main_Controller {
 
 	}
 
+	public function pay_direct()
+	{
+		// package id
+		$item_number = $this->input->post('item_number');
+		$bank_name = $this->input->post('bank_name');
+		$transaction_id = $this->input->post('transaction_id');
+		$amount_paid = $this->input->post('amount_paid');
 
+		$package_detail = $this->package_model->get_package_by_id($item_number);
+
+		$user_id = $this->session->userdata('user_id');
+
+		$date = date("Y-m-d H:i:s");
+
+		$emp_id = emp_id();
+
+		$payment_data = array(
+
+			'payment_method' => 'cash',
+
+			'txn_id' => $transaction_id,
+
+			'employer_id' => $emp_id,
+
+			'currency' => strtoupper('usd'),
+
+			'payment_amount' => $amount_paid,
+
+			'payer_email' => $this->session->userdata('email'),
+
+			'payment_status' => 'succeeded',
+
+			'purchased_plan' => $item_number,
+
+			'payment_date' => $date,
+
+			'bank_name' => $bank_name,
+
+		);
+
+		$payment_id = $this->payment_model->insert_payment($payment_data);
+
+		$no_of_days = get_package_days($item_number);
+
+
+		$buyer_data = array(
+
+			'payment_id' => $payment_id,
+
+			'employer_id' => $emp_id,
+
+			'package_id' =>  $item_number,
+
+			'expire_date' => add_days_to_date($no_of_days),
+
+			'buy_date' => $date,
+			'is_active' => 0
+
+		);
+
+
+			$this->payment_model->deactive_emp_prev_package(); // deactive the employer prev package on buying new package
+
+			$this->payment_model->insert_buyer_package($buyer_data);
+
+
+			$this->session->set_flashdata('success', 'Request sent to admin for payment confirmation.');
+
+			redirect(base_url('employers/account/dashboard'));
+
+	}
 
 }// endClass
-

@@ -62,33 +62,33 @@ class Packages extends Main_Controller {
 
 			$buyer_data = array(
 
-	    	'employer_id' => emp_id(),
+				'employer_id' => emp_id(),
 
-	    	'package_id' =>  $package_detail['id'],
+				'package_id' =>  $package_detail['id'],
 
-	    	'expire_date' => add_days_to_date($package_detail['no_of_days']),
+				'expire_date' => add_days_to_date($package_detail['no_of_days']),
 
-	    	'buy_date' => date('Y-m-d : h:m:s'),
+				'buy_date' => date('Y-m-d : h:m:s'),
 
-	    	);
+			);
 
 
 
-	    	if(emp_id()){
+			if(emp_id()){
 
 	    		// deactive the employer prev package
 
-		   		$this->payment_model->deactive_emp_prev_package(); 
+				$this->payment_model->deactive_emp_prev_package(); 
 
 		   		// add new package
 
-		   		$this->payment_model->insert_buyer_package($buyer_data);
+				$this->payment_model->insert_buyer_package($buyer_data);
 
-		    	redirect(base_url('bussiness/dashboard'));
+				redirect(base_url('bussiness/dashboard'));
 
-		    }
+			}
 
-		    exit();
+			exit();
 
 		}
 
@@ -96,41 +96,41 @@ class Packages extends Main_Controller {
 
 		// Set variables for paypal form
 
-        $returnURL = base_url().'paypal/success';
+		$returnURL = base_url().'paypal/success';
 
-        $cancelURL = base_url().'paypal/cancel';
+		$cancelURL = base_url().'paypal/cancel';
 
-        $notifyURL = base_url().'paypal/ipn';
+		$notifyURL = base_url().'paypal/ipn';
 
-        
 
-        
+
+
 
         // Add fields to paypal form
 
-        $this->paypal_lib->add_field('return', $returnURL);
+		$this->paypal_lib->add_field('return', $returnURL);
 
-        $this->paypal_lib->add_field('cancel_return', $cancelURL);
+		$this->paypal_lib->add_field('cancel_return', $cancelURL);
 
-        $this->paypal_lib->add_field('notify_url', $notifyURL);
+		$this->paypal_lib->add_field('notify_url', $notifyURL);
 
-        $this->paypal_lib->add_field('item_name', $package_detail['title']);
+		$this->paypal_lib->add_field('item_name', $package_detail['title']);
 
-        $this->paypal_lib->add_field('item_number',  $package_detail['id']);
+		$this->paypal_lib->add_field('item_number',  $package_detail['id']);
 
-        $this->paypal_lib->add_field('amount',  $package_detail['price']);
+		$this->paypal_lib->add_field('amount',  $package_detail['price']);
 
-        $this->paypal_lib->add_field('payer_id',  emp_id());
+		$this->paypal_lib->add_field('payer_id',  emp_id());
 
-        $this->paypal_lib->add_field('rm',  2);
+		$this->paypal_lib->add_field('rm',  2);
 
-        $this->paypal_lib->add_field('handling',  0);
+		$this->paypal_lib->add_field('handling',  0);
 
-        
+
 
         // Render paypal form
 
-        $this->paypal_lib->paypal_auto_form();
+		$this->paypal_lib->paypal_auto_form();
 
 	}
 
@@ -241,121 +241,121 @@ class Packages extends Main_Controller {
 
         */
 
-		$item_number = $this->input->post('item_number');
+        $item_number = $this->input->post('item_number');
 
-		$package_detail = $this->package_model->get_package_by_id($item_number);
-
-
-
-		if($package_detail['price'] == 0){
-
-			$buyer_data = array(
-
-				'employer_id' => emp_id(),
-
-				'package_id' =>  $package_detail['id'],
-
-				'expire_date' => add_days_to_date($package_detail['no_of_days']),
-
-				'buy_date' => date('Y-m-d : h:m:s')
-
-			);
+        $package_detail = $this->package_model->get_package_by_id($item_number);
 
 
 
-			if(emp_id()){
+        if($package_detail['price'] == 0){
+
+        	$buyer_data = array(
+
+        		'employer_id' => emp_id(),
+
+        		'package_id' =>  $package_detail['id'],
+
+        		'expire_date' => add_days_to_date($package_detail['no_of_days']),
+
+        		'buy_date' => date('Y-m-d : h:m:s')
+
+        	);
+
+
+
+        	if(emp_id()){
 
 				// deactive the employer prev package
 
-				$this->payment_model->deactive_emp_prev_package();
+        		$this->payment_model->deactive_emp_prev_package();
 
 				// add new package
 
-				$insert_buyer_pkg = $this->payment_model->insert_buyer_package($buyer_data);
+        		$insert_buyer_pkg = $this->payment_model->insert_buyer_package($buyer_data);
 
-				if(($insert_buyer_pkg)){
+        		if(($insert_buyer_pkg)){
 
-					$this->session->set_flashdata('success', 'Package updated successfully.');
+        			$this->session->set_flashdata('success', 'Package updated successfully.');
 
-				} else {
+        		} else {
 
-					$this->session->set_flashdata('errors', 'Error while updating pacakge in local database');
+        			$this->session->set_flashdata('errors', 'Error while updating pacakge in local database');
 
-				}
+        		}
 
-				redirect(base_url('bussiness/account/dashboard'));
+        		redirect(base_url('bussiness/account/dashboard'));
 
-			}
+        	}
 
-			exit();
+        	exit();
 
-		}
+        }
 
 
 
 		//check whether stripe token is not empty
 
-		if(!empty($this->input->post('stripeToken')))
+        if(!empty($this->input->post('stripeToken')))
 
-		{
+        {
 
 			//get token, card and user info from the form
 
-			$user_id = $this->session->userdata('user_id');
+        	$user_id = $this->session->userdata('user_id');
 
-			$token  = $this->input->post('stripeToken');
+        	$token  = $this->input->post('stripeToken');
 
-			$name = $this->input->post('name');
+        	$name = $this->input->post('name');
 
-			$email = $this->input->post('email');
+        	$email = $this->input->post('email');
 
-			$card_num = $this->input->post('card-number');
+        	$card_num = $this->input->post('card-number');
 
-			$card_cvc = $this->input->post('card-cvc');
+        	$card_cvc = $this->input->post('card-cvc');
 
-			$card_exp_month = $this->input->post('card-expiry-month');
+        	$card_exp_month = $this->input->post('card-expiry-month');
 
-			$card_exp_year = $this->input->post('card-expiry-year');
+        	$card_exp_year = $this->input->post('card-expiry-year');
 
 
 
 			//include Stripe PHP library
 
-			require_once APPPATH."third_party/stripe/init.php";
+        	require_once APPPATH."third_party/stripe/init.php";
 
 
 
 			//set api key
 
-			$this->CI =& get_instance();
+        	$this->CI =& get_instance();
 
-			$stripe_secret_key = $this->CI->general_settings['stripe_secret_key'];
+        	$stripe_secret_key = $this->CI->general_settings['stripe_secret_key'];
 
-			$stripe_publish_key = $this->CI->general_settings['stripe_publish_key'];
+        	$stripe_publish_key = $this->CI->general_settings['stripe_publish_key'];
 
-			$stripe = array(
+        	$stripe = array(
 
-				"secret_key"      => $stripe_secret_key,
+        		"secret_key"      => $stripe_secret_key,
 
-				"publishable_key" => $stripe_publish_key
+        		"publishable_key" => $stripe_publish_key
 
-			);
+        	);
 
 
 
-			\Stripe\Stripe::setApiKey($stripe['secret_key']);
+        	\Stripe\Stripe::setApiKey($stripe['secret_key']);
 
 
 
 			//add customer to stripe
 
-			$customer = \Stripe\Customer::create(array(
+        	$customer = \Stripe\Customer::create(array(
 
-				'email' => $email,
+        		'email' => $email,
 
-				'source'  => $token
+        		'source'  => $token
 
-			));
+        	));
 
 
 
@@ -363,59 +363,59 @@ class Packages extends Main_Controller {
 
 
 
-			$item_price = $this->input->post('item_price');
+        	$item_price = $this->input->post('item_price');
 
 			// $domain_list = $this->input->post('domain_list');
 
-			$currency = "USD";
+        	$currency = "USD";
 
 
 
 			//charge a credit or a debit card
 
-			$charge = \Stripe\Charge::create(array(
+        	$charge = \Stripe\Charge::create(array(
 
-				'customer' => $customer->id,
+        		'customer' => $customer->id,
 
-				'amount'   => $item_price,
+        		'amount'   => $item_price,
 
-				'currency' => $currency,
+        		'currency' => $currency,
 
-				'description' => $item_number,
+        		'description' => $item_number,
 
-				'metadata' => array(
+        		'metadata' => array(
 
-					'item_id' => $item_number
+        			'item_id' => $item_number
 
-				)
+        		)
 
-			));
+        	));
 
 
 
 			//retrieve charge details
 
-			$chargeJson = $charge->jsonSerialize();
+        	$chargeJson = $charge->jsonSerialize();
 
 
 
 			//check whether the charge is successful
 
-			if($chargeJson['amount_refunded'] == 0 && empty($chargeJson['failure_code']) && $chargeJson['paid'] == 1 && $chargeJson['captured'] == 1)
+        	if($chargeJson['amount_refunded'] == 0 && empty($chargeJson['failure_code']) && $chargeJson['paid'] == 1 && $chargeJson['captured'] == 1)
 
-			{
+        	{
 
 				//order details
 
-				$amount = $chargeJson['amount'];
+        		$amount = $chargeJson['amount'];
 
-				$balance_transaction = $chargeJson['balance_transaction'];
+        		$balance_transaction = $chargeJson['balance_transaction'];
 
-				$currency = $chargeJson['currency'];
+        		$currency = $chargeJson['currency'];
 
-				$status = $chargeJson['status'];
+        		$status = $chargeJson['status'];
 
-				$date = date("Y-m-d H:i:s");
+        		$date = date("Y-m-d H:i:s");
 
 
 
@@ -423,79 +423,79 @@ class Packages extends Main_Controller {
 
 
 
-				if(emp_id())
+        		if(emp_id())
 
-					$emp_id = emp_id();
+        			$emp_id = emp_id();
 
-				else
+        		else
 
-					$emp_id = 0;
-
-
-
-				if(user_id())
-
-					$user_id = user_id();
-
-				else
-
-					$user_id = 0;
+        			$emp_id = 0;
 
 
 
-				$payment_data = array(
+        		if(user_id())
 
-					'payment_method' => 'stripe',
+        			$user_id = user_id();
 
-					'txn_id' => $balance_transaction,
+        		else
 
-					'employer_id' => $emp_id,
-
-					'user_id' => $user_id,
-
-					'currency' => strtoupper($currency),
-
-					'payment_amount' => $amount,
-
-					'payer_email' => $email,
-
-					'payment_status' => $status,
-
-					'purchased_plan' => $item_number,
-
-					'payment_date' => $date,
-
-				);
+        			$user_id = 0;
 
 
 
-				$payment_id = $this->payment_model->insert_payment($payment_data);
+        		$payment_data = array(
 
-				$no_of_days = get_package_days($item_number);
+        			'payment_method' => 'stripe',
+
+        			'txn_id' => $balance_transaction,
+
+        			'employer_id' => $emp_id,
+
+        			'user_id' => $user_id,
+
+        			'currency' => strtoupper($currency),
+
+        			'payment_amount' => $amount,
+
+        			'payer_email' => $email,
+
+        			'payment_status' => $status,
+
+        			'purchased_plan' => $item_number,
+
+        			'payment_date' => $date,
+
+        		);
 
 
 
-				$buyer_data = array(
+        		$payment_id = $this->payment_model->insert_payment($payment_data);
 
-					'payment_id' => $payment_id,
-
-					'employer_id' => $emp_id,
-
-					'user_id' => $user_id,
-
-					'package_id' =>  $item_number,
-
-					'expire_date' => add_days_to_date($no_of_days),
-
-					'buy_date' => $date,
+        		$no_of_days = get_package_days($item_number);
 
 
 
-				);
+        		$buyer_data = array(
+
+        			'payment_id' => $payment_id,
+
+        			'employer_id' => $emp_id,
+
+        			'user_id' => $user_id,
+
+        			'package_id' =>  $item_number,
+
+        			'expire_date' => add_days_to_date($no_of_days),
+
+        			'buy_date' => $date,
 
 
 
-				if(emp_id()){
+        		);
+
+
+
+        		if(emp_id()){
 
 					$this->payment_model->deactive_emp_prev_package(); // deactive the employer prev package on buying new package
 
@@ -515,13 +515,7 @@ class Packages extends Main_Controller {
 
 				}
 
-
-
 				if(user_id()){
-
-					// sending invoice to user
-
-					//$user_info = get_user_by_id(user_id());
 
 					$this->payment_model->deactive_user_prev_package(); // deactive the employer prev package on buying new package
 
@@ -553,6 +547,78 @@ class Packages extends Main_Controller {
 
 	}
 
+
+	public function pay_direct()
+	{
+		// package id
+		$item_number = $this->input->post('item_number');
+		$bank_name = $this->input->post('bank_name');
+		$transaction_id = $this->input->post('transaction_id');
+		$amount_paid = $this->input->post('amount_paid');
+
+		$package_detail = $this->package_model->get_package_by_id($item_number);
+
+		$user_id = $this->session->userdata('user_id');
+
+		$date = date("Y-m-d H:i:s");
+
+		$emp_id = emp_id();
+
+		$payment_data = array(
+
+			'payment_method' => 'cash',
+
+			'txn_id' => $transaction_id,
+
+			'employer_id' => $emp_id,
+
+			'currency' => strtoupper('usd'),
+
+			'payment_amount' => $amount_paid,
+
+			'payer_email' => $this->session->userdata('email'),
+
+			'payment_status' => 'succeeded',
+
+			'purchased_plan' => $item_number,
+
+			'payment_date' => $date,
+
+			'bank_name' => $bank_name,
+
+		);
+
+		$payment_id = $this->payment_model->insert_payment($payment_data);
+
+		$no_of_days = get_package_days($item_number);
+
+
+		$buyer_data = array(
+
+			'payment_id' => $payment_id,
+
+			'employer_id' => $emp_id,
+
+			'package_id' =>  $item_number,
+
+			'expire_date' => add_days_to_date($no_of_days),
+
+			'buy_date' => $date,
+			'is_active' => 0
+
+		);
+
+
+			$this->payment_model->deactive_emp_prev_package(); // deactive the employer prev package on buying new package
+
+			$this->payment_model->insert_buyer_package($buyer_data);
+
+
+			$this->session->set_flashdata('success', 'Request sent to admin for payment confirmation.');
+
+			redirect(base_url('bussiness/account/dashboard'));
+
+	}
 
 
 }// endClass

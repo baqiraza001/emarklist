@@ -42,6 +42,15 @@ class Payment_model extends CI_Model{
 
 	}
 
+	// Deactive Prev Package
+	public function deactive_user_prev_package()
+	{
+		$this->db->where('user_id', user_id());
+		$this->db->update('xx_packages_bought', array('is_active' => 0));
+		return true;
+
+	}
+
 	
 	// Deactive Prev Package
 	public function deactive_agency_prev_package()

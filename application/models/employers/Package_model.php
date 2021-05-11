@@ -67,6 +67,7 @@ class Package_Model extends CI_Model{
 		$this->db->join('xx_packages','xx_packages.id = xx_packages_bought.package_id','left');
 
 		$this->db->where('xx_packages_bought.employer_id', emp_id()); 
+		$this->db->where('xx_packages_bought.is_active', 1); 
 
 		$this->db->order_by("xx_packages_bought.buy_date", "DESC");
 
@@ -146,6 +147,7 @@ class Package_Model extends CI_Model{
 		$this->db->join('xx_packages','xx_packages.id = xx_packages_bought.package_id','left');
 
 		$this->db->where('xx_packages_bought.employer_id', $emp_id); 
+		$this->db->where('xx_packages_bought.is_active', 1); 
 
 		$this->db->order_by("xx_packages_bought.buy_date", "DESC");
 

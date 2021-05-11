@@ -74,6 +74,12 @@
 								Paypal
 							</a>
 						</li>
+						<li class="nav-item">
+							<a data-toggle="pill" href="#nav-tab-confirm_deposit" class="nav-link rounded-pill">
+								<i class="fa fa-dollar"></i>
+								Confirm Deposit
+							</a>
+						</li>
 
 					</ul>
 					<!-- End -->
@@ -158,7 +164,39 @@
 						</div>
 						<!-- End -->
 
+						<!-- Confirm Deposit info -->
+						<div id="nav-tab-confirm_deposit" class="tab-pane fade">
+							<?php echo form_open(base_url('bussiness/packages/pay_direct'), 'class="deposit-form" '); ?>
+							<input type="hidden" name="package_id" value="<?=$package_detail['id']?>">
+							
+							<div class="form-group">
+								<label for="username">Bank name</label>
+								<input type="text" name="bank_name" id="bank_name" placeholder="Bank name" required class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="email">Transaction Receipit No.</label>
+								<input type="text" name="transaction_id" id="transaction_id" placeholder="23829389" required class="form-control">
+							</div>
 
+							<div class="form-group">
+								<label for="email">Amount Paid (USD)</label>
+								<input type="text" name="amount_paid" id="amount_paid" placeholder="" required class="form-control">
+							</div>
+
+							<div class="form-group">
+								<input type="hidden" name="item_number" class="form-control" value="<?= $package_detail['id'] ?>" required>
+							</div>
+
+							<div class="form-group">
+								<input type="hidden" name="item_price" class="form-control" value="<?= $package_detail['price'] ?>" required />
+							</div>
+
+							<button type="submit" id="confirm_deposit_btn" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Confirm  Deposit</button>
+							<?php echo form_close(); ?>
+
+							<?php echo form_close(); ?>
+						</div>
+						<!-- End -->
 
 
 					</div>
