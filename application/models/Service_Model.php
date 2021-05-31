@@ -21,10 +21,10 @@ class Service_Model extends CI_Model{
 
 		if(!empty($search['title'])){
 			$search_text = explode('-', $search['title']);
-			foreach($search_text as $search){
+			foreach($search_text as $search_title){
 				$this->db->group_start();
-				$this->db->or_like('title', $search);
-				$this->db->or_like('skills', $search);
+				$this->db->or_like('title', $search_title);
+				$this->db->or_like('skills', $search_title);
 				$this->db->group_end();
 			}
 		}
@@ -41,17 +41,22 @@ class Service_Model extends CI_Model{
 	// Get All Jobs
 	public function get_all_jobs($limit, $offset, $search)
 	{
+
 		$this->db->select('id, title, company_id, job_slug, job_type, description, country, city, expiry_date, created_date, industry');
 		$this->db->from('xx_job_post');
 		//$this->db->query()->result_array();
 		
 		// search URI parameters
 		unset($search['p']); //unset pagination parameter form search
+
 		if(!empty($search['company_id']))
 			$this->db->where('company_id',$search['company_id'] );
 
 		if(!empty($search['country']))
 			$this->db->where('country',$search['country'] );
+
+		if(!empty($search['state']))
+			$this->db->where('state',$search['state'] );
 
 		if(!empty($search['city']))
 			$this->db->where('city',$search['city'] );
@@ -73,14 +78,13 @@ class Service_Model extends CI_Model{
 
 		if(!empty($search['title'])){
 			$search_text = explode('-', $search['title']);
-			foreach($search_text as $search){
+			foreach($search_text as $search_title){
 				$this->db->group_start();
-				$this->db->or_like('title', $search);
-				$this->db->or_like('skills', $search);
+				$this->db->or_like('title', $search_title);
+				$this->db->or_like('skills', $search_title);
 				$this->db->group_end();
 			}
 		}
-		
 
 		$this->db->where('is_status', 'active');
 		$this->db->where('curdate() <  expiry_date');

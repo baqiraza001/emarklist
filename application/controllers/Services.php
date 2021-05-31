@@ -43,7 +43,7 @@ class Services extends Main_Controller {
 		if($this->input->post('search'))
 		{
 			$this->form_validation->set_rules('job_title', 'Job Title', 'trim');
-			$this->form_validation->set_rules('country', 'Location', 'trim');
+			$this->form_validation->set_rules('state', 'Location', 'trim');
 			$this->form_validation->set_rules('category', 'Location', 'trim');
 			$this->form_validation->set_rules('experience', 'Location', 'trim');
 			$this->form_validation->set_rules('job_type', 'Location', 'trim');
@@ -62,22 +62,13 @@ class Services extends Main_Controller {
 					$search['company_id']=$company_id;
 				}
 			}
-			// if(!empty($this->input->post('bussiness_name'))){
-			// 	$company_id=get_company_id(make_slug($this->input->post('bussiness_name')));
-			// 	if (!empty($company_id)) {
-			// 		$search['company_id']=$company_id;
-			// 	}
-			// }
-
-				//echo get_company_id($this->input->post('bussiness_name'));
-				//$search['title'] = make_slug($this->input->post('job_title'));
 			// search by services
 			if(!empty($this->input->post('Services')))
 				$search['title'] = make_slug($this->input->post('Services'));
 
-			// search job country
-			if(!empty($this->input->post('country')))
-				$search['country'] = $this->input->post('country');
+			// search job state
+			if(!empty($this->input->post('state')))
+				$search['state'] = $this->input->post('state');
 
 			// search catagory
 			if(!empty($this->input->post('category')))
@@ -122,7 +113,7 @@ class Services extends Main_Controller {
 		$data['search_value'] = $search_array;
 		$data['company_name']= $this->input->post('bussiness_name');
 		$data['jobs'] = $this->Service_Model->get_all_jobs($this->per_page_record, $offset, $search_array);
-		$data['countries'] = $this->common_model->get_countries_list(); 
+		$data['states'] = $this->common_model->get_states_by_country(160); 
 		$data['categories'] = $this->common_model->get_categories_list(); 
 
 		$data['title'] = trans('search_results');

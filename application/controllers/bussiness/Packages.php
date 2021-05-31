@@ -125,6 +125,7 @@ class Packages extends Main_Controller {
 		$this->paypal_lib->add_field('rm',  2);
 
 		$this->paypal_lib->add_field('handling',  0);
+		$this->paypal_lib->add_field('currency_code',  'NGN');
 
 
 
@@ -367,7 +368,7 @@ class Packages extends Main_Controller {
 
 			// $domain_list = $this->input->post('domain_list');
 
-        	$currency = "USD";
+        	$currency = "NGN";
 
 
 
@@ -555,6 +556,7 @@ class Packages extends Main_Controller {
 		$bank_name = $this->input->post('bank_name');
 		$transaction_id = $this->input->post('transaction_id');
 		$amount_paid = $this->input->post('amount_paid');
+		$date_paid = $this->input->post('date_paid');
 
 		$package_detail = $this->package_model->get_package_by_id($item_number);
 
@@ -582,7 +584,7 @@ class Packages extends Main_Controller {
 
 			'purchased_plan' => $item_number,
 
-			'payment_date' => $date,
+			'payment_date' => date('Y-m-d', strtotime($date_paid)),
 
 			'bank_name' => $bank_name,
 

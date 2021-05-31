@@ -27,36 +27,35 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>Package Name</th>
           <th>Bank</th>
           <th>TXN ID</th>
-          <th>Package Name</th>
           <th>Amount</th>
-          <th>Date</th>
           <th>Payment Mode</th>
-          <th>Status</th>
-          <th>Action</th>
+          <th>Date</th>
+          <th>Payment Status</th>
+          <th>Package Status</th>
         </tr>
       </thead>
       <tbody>
         <?php $i=1; foreach($payment_detail as $row): ?>
         <tr>
           <td><?= $row['id'] ?></td>
+          <td><?= get_pkg_name($row['purchased_plan']) ?></td>
           <td><?= $row['bank_name'] ?></td>
           <td><?= $row['txn_id'] ?></td>
-          <td><?= get_pkg_name($row['purchased_plan']) ?></td>
           <td><?= $row['payment_amount'] ?></td>
-          <td><?= date_time($row['payment_date']) ?></td>
           <td><?= $row['payment_method'] ?></td>
-          <?php $is_active = $row['is_active']; ?>
+          <td><?= date_time($row['payment_date']) ?></td>
+          <td><?= $row['payment_status'] ?></td>
           <td>
-            <?= $row['payment_status'] ?> 
+          <?php $is_active = $row['is_active']; ?>
             <?php if(!$is_active) { ?>
               <a href="<?= site_url('admin/payment/activate_package/'.$row['package_bought_id']) ?>"><span class="label label-info">Activate</span></a>
             <?php } else { ?>
               <span class="label label-success">Active</span>
             <?php } ?>
           </td>
-            <td><?= $row['payment_status'] ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

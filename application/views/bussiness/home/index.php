@@ -21,10 +21,10 @@
           </div>
 
           <div class="col-lg-2 form-cols">
-            <select name="country" class="form-control">
+           <select name="state" class="form-control">
               <option value=""><?=trans('select_location')?></option>
-              <?php foreach($countries as $country):?>
-                <option value="<?= $country['id']?>"><?= $country['name']?></option>
+              <?php foreach($states as $state):?>
+                <option value="<?= $state['id']?>"><?= $state['name']?></option>
               <?php endforeach; ?>
             </select>
           </div>
@@ -88,7 +88,7 @@
             <p class="card-text text-center"><?= text_limit($company_name, 40); ?></p>
             <hr>
             <div class="text-center">
-              <a href="<?= site_url('company/'.($job['company_slug'])); ?>" class="btn ticker-btn-nav" style="padding: 9px 18px !important;">Apply Job</a>
+              <a href="<?= site_url('company/'.($job['company_slug'])); ?>" class="btn ticker-btn-nav" style="padding: 9px 18px !important;">View</a>
             </div>
           </div>
         </div>

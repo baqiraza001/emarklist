@@ -20,7 +20,7 @@ class Home extends Main_Controller {
 
 		// $data['layout'] = 'bussiness/home/index';
 		// $this->load->view('layout', $data);
-		$data['countries'] = $this->common_model->get_countries_list(); // get countries for dropdown
+		$data['states'] = $this->common_model->get_states_by_country(160); // get countries for dropdown
 		
 		$data['testimonials'] = $this->package_model->get_testimonials();
 

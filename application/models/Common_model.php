@@ -115,8 +115,13 @@ class Common_model extends CI_Model
 			return  $this->db->get('xx_states')->result_array();	
 		}
 		else{
-			return  $this->db->select('id,s')->from('xx_cities')->where('id',$id)->get()->row_array();	
+			return  $this->db->select('id,name')->from('xx_cities')->where('id',$id)->get()->row_array();	
 		}
+	}	
+
+	function get_states_by_country($country_id=0)
+	{
+			return  $this->db->select('id,name')->from('xx_states')->where('country_id',$country_id)->get()->result_array();	
 	}	
 
 	//------------------------------------------------

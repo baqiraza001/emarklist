@@ -34,7 +34,7 @@
 
 						<p class="card-text">This package includes following features: </p>
 						<p class="card-text">
-							<?=trans('no_of_posts')?>: <?= $package_detail['no_of_posts'] ?>
+							Posts: <?= $package_detail['no_of_posts'] ?>
 						</p>
 						<p class="card-text">
 							<?=trans('no_of_days')?>: <?= $package_detail['no_of_days'] ?>
@@ -45,7 +45,6 @@
 						</p>
 
 						<p><h4>Total Due: &nbsp;<?= $this->general_settings['currency']; ?> <?=$package_detail['price']?></h4></p>
-						<!--<p><h4>Next Expiry Date: &nbsp; $expiry_date?></h4></p> -->
 
 					</div>
 
@@ -161,35 +160,84 @@
 
 						<!-- Confirm Deposit info -->
 						<div id="nav-tab-confirm_deposit" class="tab-pane fade">
-							<?php echo form_open(base_url('employers/packages/pay_direct'), 'class="deposit-form" '); ?>
-							<input type="hidden" name="package_id" value="<?=$package_detail['id']?>">
-							
-							<div class="form-group">
-								<label for="username">Bank name</label>
-								<input type="text" name="bank_name" id="bank_name" placeholder="Bank name" required class="form-control">
-							</div>
-							<div class="form-group">
-								<label for="email">Transaction Receipit No.</label>
-								<input type="text" name="transaction_id" id="transaction_id" placeholder="23829389" required class="form-control">
-							</div>
-
-							<div class="form-group">
-								<label for="email">Amount Paid (USD)</label>
-								<input type="text" name="amount_paid" id="amount_paid" placeholder="" required class="form-control">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<input type="radio" class="select_deposit_opt" name="select_deposit_opt" value="0">
+										<label for="username">Cash Deposit Details</label>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<input type="radio" class="select_deposit_opt" name="select_deposit_opt" value="1">
+										<label for="username">Confirm Cash Deposit</label>
+									</div>
+								</div>
 							</div>
 
-							<div class="form-group">
-								<input type="hidden" name="item_number" class="form-control" value="<?= $package_detail['id'] ?>" required>
+							<div class="row select_deposit_opt_0"style="display: none;">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label for="username">To:</label>
+										<p>Emark List</p>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label for="username">Bank:</label>
+										<p>Zenith Bank</p>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="username">Account No:</label>
+										<p>1001538646</p>
+									</div>
+								</div>
+								<div class="col-sm-2">
+									<div class="form-group">
+										<label for="username">Currency:</label>
+										<p>NGN</p>
+									</div>
+								</div>
+								<p style="color: red">Proceed to make payment to the above account details, once payment is done come back to this page; click the confirm cash deposit button to confirm your deposit and your account subscription will be updated.</p>
 							</div>
 
-							<div class="form-group">
-								<input type="hidden" name="item_price" class="form-control" value="<?= $package_detail['price'] ?>" required />
+
+							<div class="select_deposit_opt_1"style="display: none;">
+								<?php echo form_open(base_url('employers/packages/pay_direct'), 'class="deposit-form" '); ?>
+								<input type="hidden" name="package_id" value="<?=$package_detail['id']?>">
+								
+								<div class="form-group">
+									<label for="username">Bank name</label>
+									<input type="text" name="bank_name" id="bank_name" placeholder="Bank name" required class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="email">Transaction Receipit No.</label>
+									<input type="text" name="transaction_id" id="transaction_id" placeholder="23829389" required class="form-control">
+								</div>
+
+								<div class="form-group">
+									<label for="email">Deposit Date</label>
+									<input type="datetime-local" class="form-control" id="date_time" name="date_paid">
+								</div>
+
+								<div class="form-group">
+									<label for="email">Amount Paid (USD)</label>
+									<input type="text" name="amount_paid" id="amount_paid" placeholder="" required class="form-control">
+								</div>
+
+								<div class="form-group">
+									<input type="hidden" name="item_number" class="form-control" value="<?= $package_detail['id'] ?>" required>
+								</div>
+
+								<div class="form-group">
+									<input type="hidden" name="item_price" class="form-control" value="<?= $package_detail['price'] ?>" required />
+								</div>
+
+								<button type="submit" id="confirm_deposit_btn" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Confirm  Deposit</button>
+								<?php echo form_close(); ?>
 							</div>
-
-							<button type="submit" id="confirm_deposit_btn" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Confirm  Deposit</button>
-							<?php echo form_close(); ?>
-
-							<?php echo form_close(); ?>
 						</div>
 						<!-- End -->
 
@@ -214,7 +262,20 @@
 	var currency = '<?php echo 'USD'; ?>';
 	var stripe_key = '<?php echo 'sk_test_TMbUaFbCy6vreanBfGa64frP00mxfxxHiv' ?>';
 </script>
-
+<script type="text/javascript">
+	$(".select_deposit_opt").on('change', function() {
+		let value = $(this).val();
+		if(value == 0)
+		{
+			$(".select_deposit_opt_1").hide();
+			$(".select_deposit_opt_0").show();
+		}
+		else {
+			$(".select_deposit_opt_0").hide();
+			$(".select_deposit_opt_1").show();	
+		}
+	})
+</script>
 <!-- Stripe JavaScript library -->
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 

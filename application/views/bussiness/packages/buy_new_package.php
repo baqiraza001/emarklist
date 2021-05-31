@@ -37,20 +37,20 @@
 							<div class="card mb-4 box-shadow card-columns">
 								<div class="card-header" style="background-color: #f9f9ff">
 									<h2 class="my-0 font-weight-bold" style="font-size: 23px;"><?= $package['title'] ?></h2>
-									<h4 class="my-0 font-weight-normal mt-3">(<?= $package['no_of_posts'] ?> Job Posts)</h4>
+									<h4 class="my-0 font-weight-normal mt-3">(<?= $package['no_of_posts'] ?> Posts)</h4>
 									<h4 class="my-0 font-weight-normal mt-3 mb-3" style="font-size: 17px;">Package Duration (<?= $package['no_of_days'] ?> Days)</h4>
 								</div>
 								<div class="card-body">
-										<p class="">No. of Service Posts : <?= $package['no_of_service_posts'] ?></p>
-										<p class="">No. of Products Posts : <?= $package['no_of_products_posts'] ?></p>
-										<p class="">No. of Daily Deals Posts : <?= $package['no_of_daily_deals_posts'] ?></p>
-										<p class="">No. of Staff : <?= $package['no_of_staff'] ?></p>
+										<p class="">Business/Service Posts : <?= $package['no_of_service_posts'] ?></p>
+										<p class="">Products Posts : <?= $package['no_of_products_posts'] ?></p>
+										<p class="">Daily Deals Posts : <?= $package['no_of_daily_deals_posts'] ?></p>
+										<p class="">Staff : <?= $package['no_of_staff'] ?></p>
 								</div>
 								<div class="card border-0">
 									<div class="card-body text-center">
 										<div class="card-text border p-3 mx-auto w-75" style="background-color: #f9f9ff;">
 											<div class="mt-0">
-												<p style="font-size: 30px;" class="text-left">USD</p>
+												<p style="font-size: 30px;" class="text-left">NGN</p>
 												<p style="font-size: 45px;letter-spacing: 1px;" class="text-right"><?= $package['price'] ?></p>
 												<p style="margin-top: 30px;" class="">
 													<?php if($package['is_active'] == 1) { ?>
