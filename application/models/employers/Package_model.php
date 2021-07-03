@@ -193,7 +193,8 @@ class Package_Model extends CI_Model{
 
 	{
 
-		$query = $this->db->get_where('xx_packages', array('id' => $id, 'package_for' => 1));
+		$query = $this->db->get_where('xx_packages', array('price' => '0'));
+		$this->db->where('package_for', 1);
 
 		return $result = $query->row_array();
 		

@@ -30,7 +30,7 @@
              <?= $this->session->userdata('expire'); ?>
             </p>
           <?php endif; ?>
-          <p><?=trans('please')?> <a href="<?= base_url('bussiness/packages'); ?>"><?=trans('click_here')?></a> <?=trans('view_job_posting')?> <a href="<?= base_url('bussiness/packages'); ?>"><?=trans('packages_n_plans')?></a></p>
+          <p><?=trans('please')?> <a href="<?= base_url('bussiness/packages/bought_new_package'); ?>"><?=trans('click_here')?></a> <?=trans('view_job_posting')?> <a href="<?= base_url('bussiness/packages/bought_new_package'); ?>"><?=trans('packages_n_plans')?></a></p>
         </div>
         
       </div>

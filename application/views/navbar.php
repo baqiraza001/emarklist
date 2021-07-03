@@ -172,7 +172,7 @@ $(document).ready(function(){
           ?> 
 
           <?php elseif ($this->uri->segment(1) == 'employers'): ?>   
-            <li class=""><a href="<?= base_url('employers'); ?>"><?=trans('label_home')?></a></li>
+            <li class=""><a href="<?= base_url(); ?>"><?=trans('label_home')?></a></li>
             <li class=""><a href="<?= base_url('employers/job/post'); ?>"><?=trans('label_post_job')?></a></li>
             <li><a class="ticker-btn-nav btn_login mt-1" href="<?= base_url('employers/auth/login') ?>"><i class="lnr lnr-user pr-1"></i> Login</a></li>
             <li><a class="nav_btn mt-1" href="<?= base_url() ?>"><?=trans('label_for_jobseeker')?></a> </li>

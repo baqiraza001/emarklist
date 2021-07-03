@@ -6,14 +6,14 @@ class Deals_Model extends CI_Model{
 	{
 		$company_id = get_company_id_by_employer($this->session->userdata('employer_id'));
 		$this->db->select('xx_deal_post.*, xx_service_type.name as service_name,
-    	xx_service_category.name as category_name');
+			xx_service_category.name as category_name');
 		$this->db->from('xx_deal_post');
 		$this->db->join(' xx_service_type', 'xx_deal_post.deal_type= xx_service_type.id', 'left');
-    $this->db->join(' xx_service_category', 'xx_deal_post.category= xx_service_category.id', 'left');
+		$this->db->join(' xx_service_category', 'xx_deal_post.category= xx_service_category.id', 'left');
 		$this->db->where('company_id', $company_id);
 		$this->db->order_by('id','desc');
 
-    $this->db->limit($limit, $offset);
+		$this->db->limit($limit, $offset);
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -29,10 +29,10 @@ class Deals_Model extends CI_Model{
 	{
 		$company_id = get_company_id_by_employer($this->session->userdata('employer_id'));
 		$this->db->select('xx_deal_post.*, xx_service_type.name as service_name,
-    	xx_service_category.name as category_name');
+			xx_service_category.name as category_name');
 		$this->db->from('xx_deal_post');
 		$this->db->join(' xx_service_type', 'xx_deal_post.deal_type= xx_service_type.id', 'left');
-    $this->db->join(' xx_service_category', 'xx_deal_post.category= xx_service_category.id', 'left');
+		$this->db->join(' xx_service_category', 'xx_deal_post.category= xx_service_category.id', 'left');
 		$this->db->where('company_id', $company_id);
 		$this->db->where('xx_deal_post.id', $deal_id);
 
@@ -42,16 +42,16 @@ class Deals_Model extends CI_Model{
 	
 	public function get_deal_media($deal_id = 0)
 	{
-    return $this->db->select('name')
-        ->where('deal_id',$deal_id)
-        ->get('xx_deal_media')
-        ->result();
+		return $this->db->select('name')
+		->where('deal_id',$deal_id)
+		->get('xx_deal_media')
+		->result();
 	}
 
 	public function delete_media($deal_id = 0)
 	{
-    $this->db->where('deal_id',$deal_id);
-    $this->db->delete('xx_deal_media');
+		$this->db->where('deal_id',$deal_id);
+		$this->db->delete('xx_deal_media');
 	}
 	
 	public function edit($data, $deal_id = 0)

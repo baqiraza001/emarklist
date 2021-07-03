@@ -71,7 +71,7 @@
       
       $the_img = $job['company_logo'] ? $job['company_logo'] : $the_img;
 
-      $company_name=get_company_name($job['company_id']);
+      $company_name= $job['company_name'];
       ?>
       <div class="card-deck col-lg-3 col-xs-12 mb-3" style="">
         <div class="card" style="margin-bottom: 5px;border-radius: 5px;">
@@ -84,8 +84,8 @@
             </div>
           </div>
           <div class="card-body pt-0">
-            <h4 class="card-title text-center mt-3"><?= text_limit($job['title'], 20); ?></h4>
-            <p class="card-text text-center"><?= text_limit($company_name, 40); ?></p>
+            <h4 class="card-title text-center mt-3"><?= text_limit($job['company_name'], 20); ?></h4>
+            <p class="card-text text-center"><?= text_limit($job['description'], 40); ?></p>
             <hr>
             <div class="text-center">
               <a href="<?= site_url('company/'.($job['company_slug'])); ?>" class="btn ticker-btn-nav" style="padding: 9px 18px !important;">View</a>
@@ -135,7 +135,7 @@
             <p class="card-text text-center"><?= text_limit($company_name, 40); ?></p>
             <hr>
             <div class="text-center">
-              <a href="<?= site_url('jobs/'.$job['id'].'/'.($job['job_slug'])); ?>" class="btn ticker-btn-nav" style="padding: 9px 18px !important;">Apply Job</a>
+              <a href="<?= site_url('jobs/'.$job['id'].'/'.($job['job_slug'])); ?>" class="btn ticker-btn-nav" style="padding: 9px 18px !important;">View</a>
             </div>
           </div>
         </div>
@@ -229,7 +229,7 @@
             <p class="card-text text-center"><?= text_limit($company_name, 40); ?></p>
             <hr>
             <div class="text-center">
-              <a href="<?= site_url('jobs/deals_detail/'.$job['id'].'/'.($job['deal_slug'])); ?>" class="btn ticker-btn-nav" style="padding: 9px 18px !important;">Apply Job</a>
+              <a href="<?= site_url('jobs/deals_detail/'.$job['id'].'/'.($job['deal_slug'])); ?>" class="btn ticker-btn-nav" style="padding: 9px 18px !important;">View</a>
             </div>
           </div>
         </div>

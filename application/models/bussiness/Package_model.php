@@ -239,7 +239,7 @@ class Package_Model extends CI_Model{
 		$this->db->from('xx_job_post');
 		$this->db->where('is_status', 'active');
 		$this->db->where('posting_type', '2');
-		$this->db->where('curdate() <  expiry_date');
+		// $this->db->where('curdate() <  expiry_date');
 		$this->db->order_by('created_date','desc');
 		$this->db->limit($limit, $offset);
 		$query = $this->db->get();
@@ -253,7 +253,6 @@ class Package_Model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('xx_product_post');
 		$this->db->where('is_status', 'active');
-		$this->db->where('curdate() <  expiry_date');
 		$this->db->order_by('created_date','desc');
 		$this->db->limit($limit, $offset);
 		$query = $this->db->get();
@@ -295,10 +294,11 @@ class Package_Model extends CI_Model{
 		$this->db->select('
 			*
 		');
-		$this->db->join('xx_job_post','xx_job_post.company_id = xx_companies.id');
-		$this->db->where('xx_job_post.is_status','active');
+		// $this->db->join('xx_job_post','xx_job_post.company_id = xx_companies.id');
+		// $this->db->where('xx_job_post.is_status','active');
 		$this->db->limit($limit);
-		$this->db->group_by('xx_companies.company_slug');
+		$this->db->order_by('id','desc');
+		// $this->db->group_by('xx_companies.company_slug');
 		$this->db->from('xx_companies');
 		$query = $this->db->get();
 		return $query->result_array();
