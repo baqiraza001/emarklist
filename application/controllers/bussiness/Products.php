@@ -6,18 +6,18 @@ class Products extends Main_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->rbac->check_emp_authentiction();	// checking user login session (rbac is a library function)
 		$this->load->model('bussiness/products_model');
 		$this->load->model('bussiness/package_model');
 		$this->load->model('bussiness/job_model');
 		$this->load->model('common_model');
-		$this->per_page_record = 10;
+		$this->per_page_record = 1;
 
 
 	}
 
 	public function index()
 	{
+		$this->rbac->check_emp_authentiction();	// checking user login session (rbac is a library function)
 		$count = $this->products_model->count_all_products();
 		$offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 		$url= base_url("bussiness/products/index/");
@@ -39,6 +39,7 @@ class Products extends Main_Controller {
 	//-----------------------------------------------------------------------------------------
 	public function edit($product_id = 0)
 	{
+		$this->rbac->check_emp_authentiction();	// checking user login session (rbac is a library function)
 		$pkg = $this->package_model->get_active_package();
 		$pkg_id = $pkg['package_id'];
 
@@ -177,6 +178,7 @@ class Products extends Main_Controller {
 	//-----------------------------------------------------------------------------------------
 	public function delete($product_id = 0)
 	{
+		$this->rbac->check_emp_authentiction();	// checking user login session (rbac is a library function)
 		$path = './uploads/product_images/';
 		$old_media = $this->products_model->get_product_media($product_id);
     foreach ($old_media as $file) {
@@ -218,4 +220,25 @@ class Products extends Main_Controller {
 
     return $config;
 	}
+
+	public function all()
+	{
+		$count = $this->products_model->count_all_products(TRUE);
+		$offset = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+		$url= base_url("bussiness/products/all/");
+		$config = $this->functions->pagination_config($url,$count,$this->per_page_record);
+		$config['uri_segment'] = 4;		
+		$this->pagination->initialize($config);
+
+		$data['products'] = $this->products_model->get_products($this->per_page_record, $offset, TRUE); 
+
+		$data['title'] = trans('products');
+		$data['meta_description'] = 'your meta description here';
+		$data['keywords'] = 'meta tags here';
+
+		$data['layout'] = 'bussiness/products/all_products';
+		$this->load->view('layout', $data);	
+	}
+
+
 }// endclass

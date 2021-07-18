@@ -75,20 +75,20 @@
       ?>
       <div class="card-deck col-lg-3 col-xs-12 mb-3" style="">
         <div class="card" style="margin-bottom: 5px;border-radius: 5px;">
-          <div class="main-img-div" style="">
-            <img class="card-img-top" src="<?= base_url($the_img); ?>" alt="image" style="width:100%">
-            <div class="card-img-overlay text-center" style="position: relative;padding: 0.8rem !important;">
+          <div class="main-img-div text-center" style="">
+            <img class="card-img-top mt-3" src="<?= base_url($the_img); ?>" alt="image" style="width: 73px;height: 73px;border-radius: 50%;">
+            <!-- <div class="card-img-overlay text-center" style="position: relative;padding: 0.8rem !important;">
               <div class="ribbon-main-div " style="position: absolute;bottom: 0; left: 0; right: 0;">
                 <img class="card-img-top rounded-circle" style="border: 4px solid #fff;width:70px;height: 70px;" src="<?= base_url($the_img); ?>" alt="image" >
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="card-body pt-0">
             <h4 class="card-title text-center mt-3"><?= text_limit($job['company_name'], 20); ?></h4>
             <p class="card-text text-center"><?= text_limit($job['description'], 40); ?></p>
             <hr>
             <div class="text-center">
-              <a href="<?= site_url('company/'.($job['company_slug'])); ?>" class="btn ticker-btn-nav" style="padding: 9px 18px !important;">View</a>
+              <a href="<?= site_url('company/detail1/'.($job['company_slug'])); ?>" class="btn ticker-btn-nav" style="padding: 9px 18px !important;">View</a>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@
 <div class="container pb-50 pt-4" id="services">
   <div class="d-flex col col-md-12 pb-4">
     <div class="text-muted text-left"><h3>Services</h3></div>
-    <a href="<?= site_url('services')  ?>" class="btn btn-dark ml-auto">View All</a>
+    <a href="<?= site_url('services/all')  ?>" class="btn btn-dark ml-auto">View All</a>
   </div>
   <div class="row">
     <?php foreach($services as $job){?>
@@ -146,7 +146,7 @@
 <div class="container pb-50 pt-4" id="products">
   <div class="d-flex col col-md-12 pb-4">
     <div class="text-muted text-left"><h3>Products</h3></div>
-    <a href="<?= site_url('bussiness/products') ?>" class="btn btn-dark ml-auto">View All</a>
+    <a href="<?= site_url('bussiness/products/all') ?>" class="btn btn-dark ml-auto">View All</a>
   </div>
   <div class="row">
     <?php foreach($products as $job){?>

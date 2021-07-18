@@ -43,11 +43,13 @@ class Company extends Main_Controller{
 	// Company Detail
 	public function detail1($title = '')
 	{
+		$this->load->model('bussiness/staff_model');
 		$company_id = get_company_id($title);
 
 		$data['company_info'] = $this->company_model->get_company_detail($company_id);
 
 		$data['jobs'] = $this->company_model->get_jobs_by_companies($company_id); // Get company jobs
+		$data['staff'] = $this->staff_model->get_all_business_staff($company_id); // Get company staff
 
 		$data['title'] = trans('company_details');
 		$data['meta_description'] = 'your meta description here';

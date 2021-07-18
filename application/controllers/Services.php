@@ -6,8 +6,9 @@ class Services extends Main_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->per_page_record = 14;
+		$this->per_page_record = 10;
 		$this->load->model('Service_Model'); // load job model
+		$this->load->model('common_model');
 	}
 
 	//--------------------------------------------------------------
@@ -393,5 +394,25 @@ class Services extends Main_Controller {
 		}
 
 	}
+
+	public function all()
+	{
+		$count = $this->Service_Model->count_all_services();
+		$offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$url= base_url("services/all/");
+		$config = $this->functions->pagination_config($url,$count,$this->per_page_record);
+		$config['uri_segment'] = 3;		
+		$this->pagination->initialize($config);
+
+		$data['services'] = $this->Service_Model->get_all_services($this->per_page_record, $offset); 
+
+		$data['title'] = 'Services';
+		$data['meta_description'] = 'your meta description here';
+		$data['keywords'] = 'meta tags here';
+
+		$data['layout'] = 'bussiness/services/all_services';
+		$this->load->view('layout', $data);
+	}
+
 
 }// endClass

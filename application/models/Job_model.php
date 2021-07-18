@@ -246,41 +246,6 @@ class Job_Model extends CI_Model{
 	{
 		$this->db->select('id, title, company_id, job_slug, job_type, description, country, city, expiry_date, created_date, industry');
 		$this->db->from('xx_job_post');
-		
-		// search URI parameters
-//		unset($search['p']); //unset pagination parameter form search
-
-		// if(!empty($search['country']))
-		// 	$this->db->where('country',$search['country'] );
-
-		// if(!empty($search['city']))
-		// 	$this->db->where('city',$search['city'] );
-
-		// if(!empty($search['category']))
-		// 	$this->db->where('category',$search['category'] );
-
-		// if(!empty($search['experience']))
-		// 	$this->db->where('experience',$search['experience'] );
-
-		// if(!empty($search['job_type']))
-		// 	$this->db->where('job_type',$search['job_type'] );
-
-		// if(!empty($search['employment_type']))
-		// 	$this->db->where('employment_type',$search['employment_type'] );
-
-		// if(!empty($search['posting_type']) || empty($search['posting_type']))
-		// 	$this->db->where('posting_type','1' );
-
-		// if(!empty($search['title'])){
-		// 	$search_text = explode('-', $search['title']);
-		// 	foreach($search_text as $search){
-		// 		$this->db->group_start();
-		// 		$this->db->or_like('title', $search);
-		// 		$this->db->or_like('skills', $search);
-		// 		$this->db->group_end();
-		// 	}
-		// }
-		
 
 		$this->db->where('is_status', 'active');
 		$this->db->where('posting_type', '2');
@@ -291,6 +256,7 @@ class Job_Model extends CI_Model{
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+
 	public function get_all_daily_deals()
 	{
 		$this->db->select('id, title, company_id, deal_slug, deal_type, description,expiry_date, created_date, industry');

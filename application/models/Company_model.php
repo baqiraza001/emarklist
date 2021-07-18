@@ -6,7 +6,7 @@ class Company_Model extends CI_Model{
 	// Get all companies
 	public function get_companies()
 	{
-		$this->db->select('id, company_slug, company_logo');
+		$this->db->select('*');
 		$this->db->from('xx_companies');
 		$this->db->group_by('xx_companies.company_slug');
 		$query = $this->db->get();

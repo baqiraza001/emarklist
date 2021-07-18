@@ -24,7 +24,7 @@ class Jobs extends Main_Controller {
 		$config['uri_segment'] = 2;		
 		$this->pagination->initialize($config);
 
-		$data['jobs'] = $this->job_model->get_all_jobs($this->per_page_record, $offset, null); // Get all jobs
+		$data['jobs'] = $this->job_model->get_all_jobs($this->per_page_record, $offset); // Get all jobs
 		$data['countries'] = $this->common_model->get_countries_list(); 
 		$data['categories'] = $this->common_model->get_categories_list(); 
 

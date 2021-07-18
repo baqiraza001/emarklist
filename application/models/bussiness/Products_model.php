@@ -2,7 +2,7 @@
 
 class Products_Model extends CI_Model{
 
-	public function get_products($limit, $offset)
+	public function get_products($limit, $offset, $show_all = FALSE)
 	{
 		$company_id = get_company_id_by_employer($this->session->userdata('employer_id'));
 		$this->db->select('xx_product_post.*, xx_service_type.name as service_name,
@@ -10,7 +10,8 @@ class Products_Model extends CI_Model{
 		$this->db->from('xx_product_post');
 		$this->db->join(' xx_service_type', 'xx_product_post.product_type= xx_service_type.id', 'left');
     $this->db->join(' xx_service_category', 'xx_product_post.category= xx_service_category.id', 'left');
-		$this->db->where('company_id', $company_id);
+		if(!$show_all)
+			$this->db->where('company_id', $company_id);
 		$this->db->order_by('id','desc');
 
     $this->db->limit($limit, $offset);
@@ -18,10 +19,11 @@ class Products_Model extends CI_Model{
 		return $query->result_array();
 	}
 
-	public function count_all_products()
+	public function count_all_products($show_all = FALSE)
 	{
 		$company_id = get_company_id_by_employer($this->session->userdata('employer_id'));
-		$this->db->where('company_id', $company_id);
+		if(!$show_all)
+			$this->db->where('company_id', $company_id);
 		return $this->db->count_all('xx_product_post');
 	}
 

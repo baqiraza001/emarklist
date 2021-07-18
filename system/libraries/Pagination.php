@@ -342,7 +342,6 @@ class CI_Pagination {
 		// _parse_attributes(), called by initialize(), needs to run at least once
 		// in order to enable "rel" attributes, and this triggers it.
 		isset($params['attributes']) OR $params['attributes'] = array();
-
 		$this->initialize($params);
 		log_message('info', 'Pagination Class Initialized');
 	}
@@ -509,7 +508,7 @@ class CI_Pagination {
 			}
 
 			$this->cur_page = $this->CI->uri->segment($this->uri_segment);
-
+			
 			// Remove any specified prefix/suffix from the segment.
 			if ($this->prefix !== '' OR $this->suffix !== '')
 			{

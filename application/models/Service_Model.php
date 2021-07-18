@@ -181,7 +181,24 @@ class Service_Model extends CI_Model{
 		return $query->result_array();
 	}
 
-	
+	public function get_all_services($limit, $offset)
+	{
+		$this->db->select('*');
+		$this->db->from('xx_job_post');
+		$this->db->where('is_status', 'active');
+		$this->db->where('posting_type', '2');
+		$this->db->order_by('created_date','desc');
+		$this->db->limit($limit, $offset);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function count_all_services()
+	{
+		$this->db->where('is_status', 'active');
+		$this->db->where('posting_type', '2');
+		return $this->db->count_all('xx_job_post');
+	}
 	
 
 } // endClass

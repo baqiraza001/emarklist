@@ -20,8 +20,10 @@
       <?php foreach($companies as $company): ?>
       <div class="col-lg-3 col-sm-6 col-12">
         <div class="company-item-list text-center">
-          <a href="<?= base_url('company/'.$company['company_slug']); ?>"><img src="<?= base_url().$company['company_logo']; ?>" alt="company-img" /></a>
-        </div>
+          <a href="<?= base_url('company/detail1/'.$company['company_slug']); ?>"><img src="<?= base_url().$company['company_logo']; ?>" alt="company-img" /></a>
+            <h4 class="card-title text-center mt-3"><?= text_limit($company['company_name'], 20); ?></h4>
+            <p class="card-text text-center"><?= text_limit($company['description'], 40); ?></p>
+          </div>
       </div>
       <?php endforeach; ?>
     </div>
